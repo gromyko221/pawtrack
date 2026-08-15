@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Песочница: flex и grid</title>
+  <style>
+    /* Оформление самой песочницы — можно не вчитываться,
+       интересное начинается ниже, в блоке ДЕМО. */
+    body { font-family: system-ui, "Segoe UI", sans-serif; line-height: 1.6;
+           max-width: 900px; margin: 0 auto; padding: 40px 24px; color: #1c2321; }
+    h1 { font-size: 32px; }
+    h2 { margin-top: 46px; font-size: 24px; border-top: 1px solid #e2e8e5; padding-top: 26px; }
+    p  { color: #5f6b66; }
+    code { background: #f4f7f5; padding: 2px 6px; border-radius: 5px;
+           font-family: Consolas, monospace; font-size: .92em; color: #1e5240; }
+    pre  { background: #1c2321; color: #d8f0e4; padding: 14px 18px; border-radius: 10px;
+           overflow-x: auto; font-size: 14px; }
+
+    /* Так выглядят цветные квадратики в примерах */
+    .box { background: #2f7d5f; color: #fff; padding: 18px 22px; border-radius: 10px;
+           font-weight: 600; }
+    .demo { border: 2px dashed #b9ccc3; border-radius: 12px; padding: 14px;
+            margin: 14px 0; background: #fbfdfc; }
+
+    /* ============ ДЕМО: FLEX ============ */
+
+    .f1 { display: flex; }
+    .f2 { display: flex; gap: 12px; }
+    .f3 { display: flex; gap: 12px; justify-content: center; }
+    .f4 { display: flex; gap: 12px; justify-content: space-between; }
+    .f5 { display: flex; gap: 12px; align-items: center; height: 140px; background: #eef4f1; }
+    .f6 { display: flex; gap: 12px; flex-direction: column; }
+    .f7 { display: flex; gap: 12px; }
+    .f7 .grow { flex: 1; }          /* этот займёт всё свободное место */
+
+    /* ============ ДЕМО: GRID ============ */
+
+    .g1 { display: grid; gap: 12px; grid-template-columns: 1fr 1fr 1fr; }
+    .g2 { display: grid; gap: 12px; grid-template-columns: 2fr 1fr; }
+    .g3 { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+    .g4 { display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); }
+    .g4 .wide { grid-column: span 2; }   /* растянуть на 2 колонки */
+  </style>
+</head>
+<body>
+
+<h1>Песочница: как двигать блоки</h1>
+<p>
+  Открой этот файл через <b>Live Server</b>, а рядом открой его же в редакторе.
+  Меняй значения в блоке <code>ДЕМО</code> вверху файла и смотри, что происходит.
+  Ломай смело — это учебный файл, его не жалко.
+</p>
+
+<h2>Правило номер один</h2>
+<p>
+  Расположение задаётся <b>родителю</b>, а не детям. Хочешь выстроить три карточки в ряд —
+  пишешь <code>display: flex</code> тому блоку, <i>внутри</i> которого они лежат.
+  Это главная причина, по которой у новичков «ничего не двигается»: они пытаются
+  командовать самим карточкам.
+</p>
+<p>
+  Дальше выбираешь одну из двух систем:
+  <b>flex</b> — выстроить в линию (одно измерение),
+  <b>grid</b> — разложить сеткой (два измерения).
+</p>
+
+
+<h2>1. flex: просто в ряд</h2>
+<pre>display: flex;</pre>
+<div class="demo"><div class="f1">
+  <div class="box">Раз</div><div class="box">Два</div><div class="box">Три</div>
+</div></div>
+<p>Дети встали в строку. Без flex каждый занимал бы свою строку.</p>
+
+
+<h2>2. gap — расстояние между ними</h2>
+<pre>display: flex;
+gap: 12px;</pre>
+<div class="demo"><div class="f2">
+  <div class="box">Раз</div><div class="box">Два</div><div class="box">Три</div>
+</div></div>
+<p><code>gap</code> — самое полезное свойство во всём CSS. Никаких отступов вручную.</p>
+
+
+<h2>3. justify-content — куда прижать по горизонтали</h2>
+<pre>justify-content: center;</pre>
+<div class="demo"><div class="f3">
+  <div class="box">Раз</div><div class="box">Два</div><div class="box">Три</div>
+</div></div>
+
+<pre>justify-content: space-between;</pre>
+<div class="demo"><div class="f4">
+  <div class="box">Раз</div><div class="box">Два</div><div class="box">Три</div>
+</div></div>
+<p>
+  Значения: <code>flex-start</code> (по умолчанию, влево), <code>center</code>,
+  <code>flex-end</code>, <code>space-between</code> (по краям),
+  <code>space-around</code>, <code>space-evenly</code>.
+  Именно <code>space-between</code> держит твою шапку: логотип слева, меню справа.
+</p>
+
+
+<h2>4. align-items — куда прижать по вертикали</h2>
+<pre>align-items: center;
+height: 140px;</pre>
+<div class="demo"><div class="f5">
+  <div class="box">Раз</div><div class="box">Два</div><div class="box">Три</div>
+</div></div>
+<p>
+  Запомни пару: <b>justify-content — вдоль строки, align-items — поперёк.</b>
+  Вместе они центруют что угодно, это решение вечной боли «как отцентрировать блок».
+</p>
+
+
+<h2>5. flex-direction — развернуть в столбик</h2>
+<pre>flex-direction: column;</pre>
+<div class="demo"><div class="f6">
+  <div class="box">Раз</div><div class="box">Два</div><div class="box">Три</div>
+</div></div>
+<p>
+  Внимание, ловушка: при <code>column</code> оси меняются местами.
+  Теперь <code>justify-content</code> управляет вертикалью, а <code>align-items</code> — горизонталью.
+</p>
+
+
+<h2>6. flex: 1 — «займи всё свободное место»</h2>
+<pre>.grow { flex: 1; }</pre>
+<div class="demo"><div class="f7">
+  <div class="box">Узкий</div>
+  <div class="box grow">Я тянусь</div>
+  <div class="box">Узкий</div>
+</div></div>
+<p>Задаётся <b>ребёнку</b>, а не родителю — это единственное исключение из правила номер один.</p>
+
+
+<h2>7. grid: колонки заданной ширины</h2>
+<pre>display: grid;
+grid-template-columns: 1fr 1fr 1fr;</pre>
+<div class="demo"><div class="g1">
+  <div class="box">Раз</div><div class="box">Два</div><div class="box">Три</div>
+  <div class="box">Четыре</div><div class="box">Пять</div>
+</div></div>
+<p>
+  <code>fr</code> — «доля свободного места». <code>1fr 1fr 1fr</code> = три равные колонки.
+  Пятый блок автоматически ушёл на вторую строку — grid сам продолжает сетку.
+</p>
+
+
+<h2>8. Колонки разной ширины</h2>
+<pre>grid-template-columns: 2fr 1fr;</pre>
+<div class="demo"><div class="g2">
+  <div class="box">Широкая, 2fr</div><div class="box">Узкая, 1fr</div>
+</div></div>
+<p>Классический макет «контент + боковая колонка».</p>
+
+
+<h2>9. Волшебная строка: сетка, которая сама адаптируется</h2>
+<pre>grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));</pre>
+<div class="demo"><div class="g3">
+  <div class="box">Раз</div><div class="box">Два</div>
+  <div class="box">Три</div><div class="box">Четыре</div>
+</div></div>
+<p>
+  Читается так: «повторяй колонки, сколько влезет; каждая не уже 160px, но тянется».
+  Сузь окно браузера мышкой — блоки сами перестроятся.
+  <b>Именно эта строка делает карточки на сайте PawTrack адаптивными.</b>
+  Одна строка вместо трёх медиа-запросов.
+</p>
+
+
+<h2>10. Растянуть один блок на несколько колонок</h2>
+<pre>grid-template-columns: repeat(3, 1fr);
+.wide { grid-column: span 2; }</pre>
+<div class="demo"><div class="g4">
+  <div class="box wide">Я на две колонки</div>
+  <div class="box">Раз</div>
+  <div class="box">Два</div><div class="box">Три</div><div class="box">Четыре</div>
+</div></div>
+
+
+<h2>Что выбирать</h2>
+<p>
+  <b>flex</b> — когда элементы в одну линию и их ширина зависит от содержимого:
+  шапка, кнопки в ряд, подвал, иконка рядом с текстом.
+</p>
+<p>
+  <b>grid</b> — когда нужна сетка с одинаковыми ячейками:
+  карточки, галереи, макет страницы целиком.
+</p>
+<p>
+  Не мучайся выбором. Возьми любую, посмотри на результат, при необходимости поменяй.
+  На реальных сайтах они работают вместе: grid раскладывает карточки, а внутри
+  каждой карточки flex расставляет содержимое.
+</p>
+
+
+<h2>Главный инструмент верстальщика</h2>
+<p>
+  Нажми <b>F12</b> на любой странице (или правый клик → «Просмотреть код»).
+  Откроются инструменты разработчика: слева HTML, справа CSS выделенного элемента.
+  <b>Правила там можно менять прямо на живой странице</b> — снимать галочки, править числа,
+  и сразу видеть результат. Ничего не сломается, при обновлении всё вернётся.
+</p>
+<p>
+  Так делают все, каждый день. Подобрала значение в F12 — перенесла в свой style.css.
+  Это быстрее, чем угадывать в редакторе.
+</p>
+
+<h2>Задание</h2>
+<p>
+  1. В примере 3 поменяй <code>center</code> на <code>flex-end</code>.<br>
+  2. В примере 9 поменяй <code>160px</code> на <code>300px</code> и сузь окно.<br>
+  3. В примере 10 сделай <code>span 3</code>.<br>
+  4. Открой <code>index.html</code> через Live Server, нажми F12, найди в CSS
+     свойство <code>gap: 22px</code> у блока карточек и покрути значение.
+</p>
+
+</body>
+</html>

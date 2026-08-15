@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PawTrack — счётчик шагов и активности животных</title>
+  <meta name="description" content="PawTrack — носимое IoT-устройство и приложение для объективного мониторинга активности собак и сельскохозяйственных животных.">
+
+  <!-- ВОТ ГЛАВНОЕ ИЗМЕНЕНИЕ УРОКА 3.
+       Раньше все стили жили тут же, внутри <style>. Теперь они вынесены
+       в отдельный файл style.css, а эта строка его подключает.
+       href="style.css" — имя файла, лежащего РЯДОМ с этим.
+       Так делают все настоящие сайты: один файл стилей на сто страниц. -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="wrap">
+    <header>
+      <div class="logo">PawTrack</div>
+      <nav>
+        <a href="#problem">Проблема</a>
+        <a href="#solution">Решение</a>
+        <a href="#segments">Для кого</a>
+        <a href="#contact">Связаться</a>
+      </nav>
+    </header>
+  </div>
+
+  <div class="wrap">
+    <section class="hero">
+      <span class="badge">IoT-устройство + мобильное приложение</span>
+      <h1>Объективные данные об активности животного</h1>
+      <p class="lead">
+        PawTrack круглосуточно считает шаги и активность питомца или животного на ферме
+        и превращает сырые данные в понятные инсайты для владельца, ветеринара и зоотехника.
+      </p>
+      <div class="hero-actions">
+        <a class="btn" href="#contact">Стать пилотным пользователем</a>
+        <a class="btn btn-ghost" href="#solution">Как это работает</a>
+      </div>
+    </section>
+  </div>
+
+  <section class="soft" id="problem">
+    <div class="wrap">
+      <h2>Проблема</h2>
+      <p class="lead">Активность животного сегодня оценивают «на глаз» — и теряют на этом здоровье и деньги.</p>
+      <div class="grid">
+        <div class="card">
+          <div class="ico">🐕</div>
+          <h3>Владельцы собак</h3>
+          <p>Нет объективных данных о ежедневной нагрузке питомца. Недогул и перегруз одинаково незаметны.</p>
+        </div>
+        <div class="card">
+          <div class="ico">🩺</div>
+          <h3>Ветеринары</h3>
+          <p>Невозможно собрать достоверный анамнез активности — диагноз ставится по словам владельца.</p>
+        </div>
+        <div class="card">
+          <div class="ico">🐄</div>
+          <h3>Скотоводство</h3>
+          <p>Болезнь животного обнаруживают поздно. Результат — падение продуктивности и прямые финансовые потери.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="solution">
+    <div class="wrap">
+      <h2>Решение</h2>
+      <p class="lead">Носимый трекер снимает данные, приложение объясняет, что они значат.</p>
+      <div class="grid">
+        <div class="card">
+          <div class="ico">1</div>
+          <h3>Устройство</h3>
+          <p>Компактный носимый датчик на ошейнике. Круглосуточный сбор данных о шагах и двигательной активности.</p>
+        </div>
+        <div class="card">
+          <div class="ico">2</div>
+          <h3>Приложение</h3>
+          <p>Данные синхронизируются на телефон: дневная норма, динамика, отклонения от привычного профиля.</p>
+        </div>
+        <div class="card">
+          <div class="ico">3</div>
+          <h3>Инсайты</h3>
+          <p>Резкое падение активности — ранний сигнал болезни. Отчёт можно показать ветеринару или зоотехнику.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="soft" id="segments">
+    <div class="wrap">
+      <h2>Целевые сегменты</h2>
+      <p class="lead">Выходим на рынок в две фазы.</p>
+      <table>
+        <thead>
+          <tr><th>Фаза</th><th>Сегмент</th><th>Ключевая потребность</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="phase">Фаза 1</td>
+            <td>Владельцы домашних собак</td>
+            <td>Контроль здоровья и активности питомца</td>
+          </tr>
+          <tr>
+            <td class="phase">Фаза 1</td>
+            <td>Ветеринарные клиники</td>
+            <td>Объективные данные для диагностики</td>
+          </tr>
+          <tr>
+            <td class="phase">Фаза 2</td>
+            <td>Фермерские хозяйства (коровы, козы)</td>
+            <td>Мониторинг активности для производства продукта, раннее выявление болезни</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2>Стать пилотным пользователем</h2>
+      <p class="lead">Собираем первую группу владельцев собак и ветклиник для тестирования прототипа.</p>
+
+      <form>
+        <label for="name">Имя</label>
+        <input id="name" name="name" type="text" placeholder="Как к вам обращаться" required>
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+        <label for="role">Кто вы</label>
+        <select id="role" name="role">
+          <option>Владелец собаки</option>
+          <option>Ветеринарная клиника</option>
+          <option>Фермерское хозяйство</option>
+          <option>Инвестор / партнёр</option>
+        </select>
+
+        <label for="msg">Комментарий</label>
+        <textarea id="msg" name="msg" rows="4" placeholder="Сколько у вас животных, что хотите отслеживать"></textarea>
+
+        <button class="btn" type="submit">Отправить заявку</button>
+      </form>
+      <!-- Форма пока не отправляется. Включим её в уроке 4. -->
+    </div>
+  </section>
+
+  <div class="wrap">
+    <footer>
+      <div>© 2026 PawTrack. Инженерная разработка.</div>
+      <div>hello@pawtrack.example</div>
+    </footer>
+  </div>
+
+</body>
+</html>
