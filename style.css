@@ -157,6 +157,79 @@ input:focus, textarea:focus, select:focus {
 form .btn { margin-top: 20px; }
 
 
+/* --- ПРОДУКТ ------------------------------------------------
+   .product — две колонки: слева фото, справа текст.
+   1.1fr 1fr означает "левая чуть шире правой".
+   В медиазапросе внизу файла колонки складываются в одну. */
+.product {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 34px;
+  align-items: start;
+  margin-top: 34px;
+}
+
+/* Заглушка на месте будущей фотографии.
+   aspect-ratio держит пропорцию 4:3, чтобы блок не схлопнулся. */
+.photo-slot {
+  aspect-ratio: 4 / 3;
+  border: 2px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 15px;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Настоящее фото, когда оно появится.
+   width:100% + height:auto — картинка вписывается в колонку и не вылезает. */
+.photo {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  display: block;
+}
+
+/* Списки характеристик. list-style: none убирает стандартные точки,
+   вместо них рисуем свою галочку через ::before. */
+.specs { list-style: none; margin: 10px 0 26px; }
+.specs li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 9px;
+  color: var(--muted);
+}
+.specs li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+/* Три шага "как это работает" */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+  margin-top: 40px;
+}
+.step { padding-top: 14px; border-top: 3px solid var(--brand); }
+.step .num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+}
+.step p { color: var(--muted); font-size: 16px; }
+
+
 /* --- ПОДВАЛ ------------------------------------------------- */
 footer {
   border-top: 1px solid var(--line);
@@ -173,4 +246,6 @@ footer {
   h2 { font-size: 27px; }
   section { padding: 60px 0; }
   nav { display: none; }
+  /* Две колонки блока "Продукт" складываются в одну */
+  .product { grid-template-columns: 1fr; gap: 24px; }
 }
