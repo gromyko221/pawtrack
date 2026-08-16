@@ -228,7 +228,11 @@
       <h2>Стать пилотным пользователем</h2>
       <p class="lead">Собираем первую группу владельцев собак и ветклиник для тестирования прототипа.</p>
 
-      <form action="https://formspree.io/f/mljrwodj" method="POST">
+      <!-- Сюда JavaScript впишет сообщение после отправки формы.
+           Пока пусто — блок ничего не занимает на странице. -->
+      <div id="form-status"></div>
+
+      <form id="lead-form" action="https://formspree.io/f/mljrwodj" method="POST">
   <input type="hidden" name="_subject" value="Новая заявка с сайта PawTrack">
   <input type="text" name="_gotcha" style="display:none">
         <label for="name">Имя</label>
@@ -256,10 +260,17 @@
 
   <div class="wrap">
     <footer>
-      <div>© 2026 PawTrack. Инженерная разработка.</div>
+      <!-- Год теперь подставляет JavaScript. 2026 внутри — запасной
+           вариант на случай, если скрипт не загрузится. -->
+      <div>© <span id="year">2026</span> PawTrack. Инженерная разработка.</div>
       <div>hello@pawtrack.example</div>
     </footer>
   </div>
+
+  <!-- Подключаем JavaScript. Ставим ПЕРЕД </body>, а не в head:
+       к этому моменту вся страница уже построена, и скрипту
+       есть что искать. Иначе querySelector вернёт пустоту. -->
+  <script src="script.js"></script>
 
 </body>
 </html>

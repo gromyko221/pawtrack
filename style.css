@@ -29,6 +29,10 @@
 /* --- БАЗА --------------------------------------------------- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Плавная прокрутка к секциям при клике по меню.
+   Раньше для этого писали JavaScript — теперь хватает одной строки CSS. */
+html { scroll-behavior: smooth; }
+
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color: var(--ink);
@@ -228,6 +232,34 @@ form .btn { margin-top: 20px; }
   margin-bottom: 6px;
 }
 .step p { color: var(--muted); font-size: 16px; }
+
+
+/* --- СООБЩЕНИЯ ФОРМЫ (работают вместе с script.js) ----------
+   .hidden — универсальный класс-выключатель. JavaScript навешивает
+   его на форму после успешной отправки, и форма исчезает. */
+.hidden { display: none; }
+
+.form-status {
+  margin-top: 26px;
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  max-width: 460px;
+  font-size: 16px;
+}
+/* Пустой блок не должен занимать место, пока сообщения нет.
+   :empty — псевдокласс «элемент без содержимого». */
+.form-status:empty { display: none; }
+
+.form-status.ok {
+  background: var(--bg-soft);
+  border: 1px solid var(--brand);
+  color: var(--brand-dark);
+}
+.form-status.err {
+  background: #fdf2f2;
+  border: 1px solid #e0b4b4;
+  color: #8c2f2f;
+}
 
 
 /* --- ПОДВАЛ ------------------------------------------------- */
