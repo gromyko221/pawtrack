@@ -32,6 +32,8 @@
   --line:        #dfe5ee;
 
   --radius:      16px;
+
+  --num:         #f0761f;   /* оранжевый для ключевых цифр исследований */
 }
 
 
@@ -347,6 +349,61 @@ td.phase {
   margin-bottom: 10px;
 }
 .step p { color: var(--muted); font-size: 15.5px; }
+
+
+/* --- ПЛИТКИ С ЦИФРАМИ ИССЛЕДОВАНИЙ -------------------------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+  margin-top: 44px;
+}
+.stat {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 30px 28px;
+  display: flex;
+  flex-direction: column;
+}
+.stat .big {
+  font-family: 'Archivo', sans-serif;
+  font-size: clamp(30px, 3vw, 40px);
+  font-weight: 900;
+  color: var(--num);   /* оранжевый: главные цифры должны бросаться в глаза */
+  margin-bottom: 12px;
+  letter-spacing: -.02em;
+}
+.stat p { color: var(--muted); font-size: 15.5px; flex: 1; }
+.stat .src {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.stat .src:hover { color: var(--ink); }
+
+/* Плашка-примечание */
+.note {
+  background: var(--accent-soft);
+  border-left: 4px solid var(--dark);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 24px;
+  margin-top: 26px;
+  font-size: 15px;
+  color: var(--ink);
+  max-width: 74ch;
+}
+.note a { color: inherit; }
+
+/* Список источников */
+.refs { margin: 36px 0 0 20px; font-size: 15px; color: var(--muted); }
+.refs li { margin-bottom: 14px; padding-left: 6px; }
+.refs a { color: var(--ink); text-underline-offset: 3px; }
+
+/* Ссылки внутри карточек и подвала */
+.card a, footer a { color: inherit; text-underline-offset: 3px; }
 
 
 /* --- ГАЛЕРЕЯ ПРОТОТИПА -------------------------------------- */
