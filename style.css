@@ -1,283 +1,448 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+
 /* ============================================================
-   style.css — файл стилей сайта PawTrack
+   style.css — PawTrack. Спортивно-технологичная тема
+   по мотивам WHOOP и Garmin.
 
-   Обрати внимание: здесь НЕТ тега <style>. Он нужен был только
-   когда стили жили внутри HTML. В отдельном .css файле пишем
-   сразу правила.
-
-   Подключается строкой в index.html:
-   <link rel="stylesheet" href="style.css">
+   Рецепт стиля:
+   • тёмный первый экран с крупным заголовком КАПСОМ (WHOOP)
+   • светлые продуктовые секции с большими карточками (Garmin)
+   • энергичный зелёный акцент на тёмном
+   • шрифты: Archivo для заголовков (жирный, собранный),
+     Inter для текста (нейтральный, читаемый)
    ============================================================ */
 
 
-/* --- ПЕРЕМЕННЫЕ ---------------------------------------------
-   Меняешь цвет здесь — меняется на всём сайте.
-   Начни знакомство именно отсюда: подставь свой цвет в --brand
-   и сохрани (Ctrl+S). Live Server обновит страницу сам. */
+/* --- ПЕРЕМЕННЫЕ --------------------------------------------- */
 :root {
-  --brand:      #2f7d5f;
-  --brand-dark: #1e5240;
-  --ink:        #1c2321;
-  --muted:      #5f6b66;
-  --bg:         #ffffff;
-  --bg-soft:    #f4f7f5;
-  --line:       #e2e8e5;
-  --radius:     14px;
+  --accent:      #d3dce6;   /* светло-серый акцент, холодный */
+  --accent-dark: #b9c6d4;
+  --accent-soft: #eef2f6;   /* очень светлая серо-голубая подложка */
+
+  --dark:        #16293f;   /* тёмно-синий посветлее */
+  --dark-2:      #1e3450;
+  --dark-line:   #2d4360;
+  --on-dark:     #eef3f9;   /* текст на тёмном */
+  --on-dark-mut: #93a3b8;   /* приглушённый текст на тёмном */
+
+  --ink:         #0f1722;   /* текст на светлом */
+  --muted:       #5a6676;
+  --bg:          #ffffff;
+  --bg-soft:     #f2f5f9;   /* холодный светло-серый с синим подтоном */
+  --line:        #dfe5ee;
+
+  --radius:      16px;
 }
 
 
 /* --- БАЗА --------------------------------------------------- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Плавная прокрутка к секциям при клике по меню.
-   Раньше для этого писали JavaScript — теперь хватает одной строки CSS. */
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", sans-serif;
   color: var(--ink);
   background: var(--bg);
-  line-height: 1.6;
-  font-size: 17px;
+  line-height: 1.65;
+  font-size: 16.5px;
+  -webkit-font-smoothing: antialiased;
 }
 
-.wrap {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
 
-section { padding: 88px 0; }
+section { padding: 104px 0; }
 .soft   { background: var(--bg-soft); }
 
-h1, h2, h3 { line-height: 1.2; }
-h2 { font-size: 34px; margin-bottom: 14px; }
-h3 { font-size: 20px; margin-bottom: 8px; }
+/* Заголовки капсом — фирменный приём спортивных брендов.
+   letter-spacing чуть отрицательный у крупных, чуть положительный
+   у мелких надписей-ярлыков. */
+h1, h2, h3 {
+  font-family: 'Archivo', 'Inter', sans-serif;
+  line-height: 1.08;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -.01em;
+}
+h2 { font-size: clamp(28px, 3.4vw, 44px); margin-bottom: 18px; }
+h3 { font-size: 17px; margin-bottom: 10px; letter-spacing: .02em; }
 
-.lead { color: var(--muted); font-size: 19px; max-width: 60ch; }
+.lead {
+  color: var(--muted);
+  font-size: clamp(16px, 1.3vw, 19px);
+  max-width: 62ch;
+}
 
 
-/* --- ШАПКА -------------------------------------------------- */
+/* --- ШАПКА (тёмная, как у WHOOP) ---------------------------- */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 18px 0;
-  border-bottom: 1px solid var(--line);
   position: sticky; top: 0;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(8px);
-  z-index: 10;
+  z-index: 20;
 }
-.logo { font-weight: 700; font-size: 20px; color: var(--brand-dark); }
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0 -50vw;
+  background: linear-gradient(120deg, rgba(19, 35, 57, .92), rgba(30, 60, 97, .92));
+  backdrop-filter: saturate(160%) blur(10px);
+  border-bottom: 1px solid var(--dark-line);
+  z-index: -1;
+}
+
+.logo {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #fff;
+}
+
 nav a {
   margin-left: 26px;
-  color: var(--muted);
+  color: var(--on-dark-mut);
   text-decoration: none;
-  font-size: 15px;
-}
-nav a:hover { color: var(--brand); }
-
-
-/* --- КНОПКИ ------------------------------------------------- */
-.btn {
-  display: inline-block;
-  background: var(--brand);
-  color: #fff;
-  padding: 13px 26px;
-  border-radius: var(--radius);
-  text-decoration: none;
+  font-size: 13px;
   font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: background .2s;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  transition: color .18s;
 }
-.btn:hover { background: var(--brand-dark); }
-.btn-ghost {
-  background: transparent;
-  color: var(--brand-dark);
-  border: 1px solid var(--line);
-}
-.btn-ghost:hover { background: var(--bg-soft); }
+nav a:hover { color: var(--accent); }
 
 
-/* --- ПЕРВЫЙ ЭКРАН ------------------------------------------- */
-.hero { padding: 96px 0 80px; }
-.hero h1 { font-size: 52px; margin-bottom: 18px; max-width: 16ch; }
-.hero .lead { margin-bottom: 30px; }
+/* --- ПЕРВЫЙ ЭКРАН (тёмный) ----------------------------------
+   Шапка и хиро лежат в разных .wrap, поэтому тёмный фон хиро
+   тоже рисуем растянутым псевдоэлементом на всю ширину. */
+.hero {
+  padding: 130px 0 110px;
+  position: relative;
+  color: var(--on-dark);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -80px -50vw 0;
+  /* Три слоя, сверху вниз: голубое свечение справа, лёгкая дымка
+     слева внизу, а в основе — диагональный градиент из глубокого
+     синего в более яркий. Движение цвета = ощущение технологичности. */
+  background:
+    radial-gradient(900px 420px at 75% 10%, rgba(84, 178, 255, .22), transparent 65%),
+    radial-gradient(600px 320px at 15% 90%, rgba(211, 220, 230, .07), transparent 70%),
+    linear-gradient(135deg, #132339 0%, #1b3a5e 55%, #265089 100%);
+  z-index: -1;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 5.4vw, 68px);
+  font-weight: 900;
+  margin-bottom: 24px;
+  max-width: 19ch;
+  color: #fff;
+}
+/* Акцентная точка в конце заголовка — фирменная деталь. */
+.hero h1::after { content: "."; color: var(--accent); }
+
+.hero .lead {
+  color: var(--on-dark-mut);
+  margin-bottom: 38px;
+}
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
 .badge {
-  display: inline-block;
-  background: var(--bg-soft);
-  color: var(--brand-dark);
-  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(211, 220, 230, .1);
+  color: var(--accent);
+  border: 1px solid rgba(211, 220, 230, .35);
   border-radius: 999px;
-  padding: 6px 14px;
-  font-size: 14px;
-  margin-bottom: 22px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 28px;
+}
+.badge::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);   /* лёгкое свечение индикатора */
 }
 
 
-/* --- КАРТОЧКИ ----------------------------------------------- */
+/* --- КНОПКИ -------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #16293f;                 /* тёмно-синий текст на светло-сером */
+  padding: 16px 34px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  border: none;
+  cursor: pointer;
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(16, 32, 54, .28);
+}
+.btn:active { transform: translateY(0); }
+.btn:disabled { opacity: .55; cursor: default; transform: none; box-shadow: none; }
+
+/* Контурная кнопка. На тёмном хиро — светлый контур. */
+.btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .28);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, .08);
+  box-shadow: none;
+}
+
+
+/* --- КАРТОЧКИ (светлые секции, дух Garmin) ------------------ */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 22px;
-  margin-top: 36px;
+  margin-top: 44px;
 }
 .card {
-  background: var(--bg);
+  background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 26px;
+  padding: 32px 28px;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
-.card .ico { font-size: 26px; margin-bottom: 10px; }
-.card p { color: var(--muted); font-size: 16px; }
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 16px 40px rgba(16, 20, 19, .08);
+}
+.card p { color: var(--muted); font-size: 15.5px; }
+
+.card .ico {
+  width: 50px; height: 50px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-soft);
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
 
 
-/* --- ТАБЛИЦА ------------------------------------------------ */
-table { width: 100%; border-collapse: collapse; margin-top: 30px; }
-th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); }
-th { font-size: 14px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
-td.phase { font-weight: 600; color: var(--brand-dark); white-space: nowrap; }
-
-
-/* --- ФОРМА -------------------------------------------------- */
-form { max-width: 460px; margin-top: 26px; }
-label { display: block; font-size: 14px; font-weight: 600; margin: 16px 0 6px; }
-input, textarea, select {
+/* --- ТАБЛИЦА ------------------------------------------------- */
+table {
   width: 100%;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  font: inherit;
+  border-collapse: collapse;
+  margin-top: 36px;
   background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
 }
-input:focus, textarea:focus, select:focus {
-  outline: 2px solid var(--brand);
-  outline-offset: 1px;
+th, td { text-align: left; padding: 18px 22px; border-bottom: 1px solid var(--line); }
+th {
+  font-family: 'Archivo', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--muted);
+  background: var(--bg-soft);
+  font-weight: 700;
 }
-form .btn { margin-top: 20px; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--accent-soft); }
+td.phase {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--ink);
+  white-space: nowrap;
+}
 
 
-/* --- ПРОДУКТ ------------------------------------------------
-   .product — две колонки: слева фото, справа текст.
-   1.1fr 1fr означает "левая чуть шире правой".
-   В медиазапросе внизу файла колонки складываются в одну. */
+/* --- ПРОДУКТ ------------------------------------------------- */
 .product {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 34px;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 44px;
   align-items: start;
-  margin-top: 34px;
+  margin-top: 44px;
 }
 
-/* Заглушка на месте будущей фотографии.
-   aspect-ratio держит пропорцию 4:3, чтобы блок не схлопнулся. */
 .photo-slot {
   aspect-ratio: 4 / 3;
   border: 2px dashed var(--line);
   border-radius: var(--radius);
-  background: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
   color: var(--muted);
   font-size: 15px;
   text-align: center;
-  padding: 20px;
+  padding: 24px;
 }
-
-/* Настоящее фото, когда оно появится.
-   width:100% + height:auto — картинка вписывается в колонку и не вылезает. */
 .photo {
-  width: 100%;
-  height: auto;
+  width: 100%; height: auto;
   border-radius: var(--radius);
   border: 1px solid var(--line);
+  box-shadow: 0 20px 50px rgba(16, 20, 19, .12);
   display: block;
 }
 
-/* Списки характеристик. list-style: none убирает стандартные точки,
-   вместо них рисуем свою галочку через ::before. */
-.specs { list-style: none; margin: 10px 0 26px; }
+.specs { list-style: none; margin: 12px 0 30px; }
 .specs li {
   position: relative;
-  padding-left: 26px;
-  margin-bottom: 9px;
+  padding-left: 32px;
+  margin-bottom: 11px;
   color: var(--muted);
 }
 .specs li::before {
   content: "✓";
   position: absolute;
-  left: 0;
-  color: var(--brand);
-  font-weight: 700;
+  left: 0; top: 3px;
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-soft);
+  color: var(--ink);
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 800;
 }
 
-/* Три шага "как это работает" */
+/* Три шага: крупный номер-цифра в духе спортивной статистики. */
 .steps {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 22px;
-  margin-top: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 26px;
+  margin-top: 52px;
 }
-.step { padding-top: 14px; border-top: 3px solid var(--brand); }
+.step { padding-top: 20px; border-top: 3px solid var(--ink); }
 .step .num {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--brand);
-  letter-spacing: .08em;
-  margin-bottom: 6px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 10px;
 }
-.step p { color: var(--muted); font-size: 16px; }
+.step p { color: var(--muted); font-size: 15.5px; }
 
 
-/* --- СООБЩЕНИЯ ФОРМЫ (работают вместе с script.js) ----------
-   .hidden — универсальный класс-выключатель. JavaScript навешивает
-   его на форму после успешной отправки, и форма исчезает. */
+/* --- ФОРМА --------------------------------------------------- */
+form { max-width: 520px; margin-top: 34px; }
+
+label {
+  display: block;
+  font-family: 'Archivo', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin: 20px 0 8px;
+  color: var(--ink);
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 15px 18px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  transition: border-color .16s, box-shadow .16s;
+}
+input::placeholder, textarea::placeholder { color: #a8b1ad; }
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+textarea { resize: vertical; min-height: 110px; }
+form .btn { margin-top: 26px; }
+
+
+/* --- СООБЩЕНИЯ ФОРМЫ (работают вместе со script.js) --------- */
 .hidden { display: none; }
 
 .form-status {
-  margin-top: 26px;
-  padding: 16px 20px;
+  margin-top: 30px;
+  padding: 22px 26px;
   border-radius: var(--radius);
-  max-width: 460px;
-  font-size: 16px;
+  max-width: 520px;
+  font-size: 16.5px;
+  font-weight: 500;
 }
-/* Пустой блок не должен занимать место, пока сообщения нет.
-   :empty — псевдокласс «элемент без содержимого». */
 .form-status:empty { display: none; }
 
 .form-status.ok {
-  background: var(--bg-soft);
-  border: 1px solid var(--brand);
-  color: var(--brand-dark);
+  background: var(--accent-soft);
+  border: 1.5px solid var(--accent);
+  color: #33404f;
 }
 .form-status.err {
-  background: #fdf2f2;
-  border: 1px solid #e0b4b4;
-  color: #8c2f2f;
+  background: #fdf0ee;
+  border: 1.5px solid #dfaea6;
+  color: #8c3a2f;
 }
 
 
-/* --- ПОДВАЛ ------------------------------------------------- */
+/* --- ПОДВАЛ (тёмный, замыкает страницу) ---------------------- */
 footer {
-  border-top: 1px solid var(--line);
-  padding: 34px 0;
-  color: var(--muted);
-  font-size: 15px;
-  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  padding: 44px 0;
+  color: var(--on-dark-mut);
+  font-size: 14.5px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  position: relative;
+}
+footer::before {
+  content: "";
+  position: absolute;
+  inset: 0 -50vw;
+  background: linear-gradient(135deg, #132339, #1e3f66);
+  z-index: -1;
 }
 
 
-/* --- ТЕЛЕФОН ------------------------------------------------ */
+/* --- ТЕЛЕФОН ------------------------------------------------- */
 @media (max-width: 720px) {
-  .hero h1 { font-size: 36px; }
-  h2 { font-size: 27px; }
-  section { padding: 60px 0; }
+  section { padding: 64px 0; }
+  .hero { padding: 84px 0 64px; }
   nav { display: none; }
-  /* Две колонки блока "Продукт" складываются в одну */
-  .product { grid-template-columns: 1fr; gap: 24px; }
+  .product { grid-template-columns: 1fr; gap: 28px; }
+  .card { padding: 26px 22px; }
+  th, td { padding: 14px 16px; }
+  .btn, .btn-ghost { width: 100%; }
+}
+
+
+/* --- УВАЖЕНИЕ К НАСТРОЙКАМ ПОЛЬЗОВАТЕЛЯ --------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+  html { scroll-behavior: auto; }
 }
