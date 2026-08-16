@@ -349,6 +349,32 @@ td.phase {
 .step p { color: var(--muted); font-size: 15.5px; }
 
 
+/* --- ГАЛЕРЕЯ ПРОТОТИПА -------------------------------------- */
+.gallery-title { margin-top: 64px; }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 22px;
+}
+.gallery figure { margin: 0; }
+.gallery img, .gallery video {
+  width: 100%;
+  aspect-ratio: 4 / 3;      /* все ячейки одной высоты */
+  object-fit: cover;        /* заполнить рамку, лишнее обрезать */
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  display: block;
+  background: var(--dark);  /* тёмная подложка видна, пока видео грузится */
+}
+.gallery figcaption {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+
 /* --- ФОРМА --------------------------------------------------- */
 form { max-width: 520px; margin-top: 34px; }
 

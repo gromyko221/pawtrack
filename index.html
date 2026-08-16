@@ -103,16 +103,10 @@
       </p>
 
       <div class="product">
-        <!-- ЛЕВАЯ КОЛОНКА: фото прототипа.
-             Положи фотографию в папку сайта рядом с index.html и назови
-             foto-prototip.jpg. Потом удали блок photo-slot ниже, а у тега img
-             сними обрамление комментария (строки со знаками скобок вокруг него). -->
-        <div class="photo-slot">
-          <span>Здесь будет фото прототипа</span>
-        </div>
-        <!--
-        <img class="photo" src="foto-prototip.jpg" alt="Прототип устройства PawTrack на ошейнике">
-        -->
+        <!-- ЛЕВАЯ КОЛОНКА: схема размещения устройства.
+             Файл infografika.jpg должен лежать рядом с index.html. -->
+        <img class="photo" src="infografika.jpg"
+             alt="Схема размещения PawTrack: устройство крепится на шлейке в области холки, между лопатками">
 
         <!-- ПРАВАЯ КОЛОНКА: что внутри и что меряем -->
         <div>
@@ -149,6 +143,29 @@
           <h3>Вы видите отклонение</h3>
           <p>Приложение подсказывает, когда стоит показать животное врачу.</p>
         </div>
+      </div>
+
+      <!-- ГАЛЕРЕЯ ПРОТОТИПА. figure = "иллюстрация с подписью",
+           figcaption — сама подпись. Честные фото железа как есть. -->
+      <h3 class="gallery-title">Прототип без прикрас</h3>
+      <div class="gallery">
+        <figure>
+          <img src="prototip-vnutri.jpg"
+               alt="Внутренности прототипа: аккумулятор, плата ESP32, акселерометр и индикатор заряда в корпусе">
+          <figcaption>Начинка: контроллер ESP32, акселерометр MPU-6050, аккумулятор и индикатор заряда</figcaption>
+        </figure>
+        <figure>
+          <img src="prototip-plata.jpg"
+               alt="Плата расширения ESP32 крупным планом в руке">
+          <figcaption>Плата в сборе — основа носимого датчика</figcaption>
+        </figure>
+        <figure>
+          <!-- Тег video встраивает видеоплеер. controls добавляет кнопки
+               воспроизведения, preload="metadata" грузит только обложку,
+               а не весь ролик — бережём трафик посетителя. -->
+          <video src="testirovanie.mp4" controls preload="metadata" playsinline></video>
+          <figcaption>Испытание прототипа в движении</figcaption>
+        </figure>
       </div>
     </div>
   </section>
