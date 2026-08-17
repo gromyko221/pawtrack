@@ -146,8 +146,8 @@ nav a:hover { color: var(--accent); }
   max-width: 24ch;
   color: #fff;
 }
-/* Оранжевый вопросительный знак: перекликается с цифрами ниже */
-.hero h1 .q { color: #fff; }
+/* Вопросительный знак того же цвета, что и заголовок */
+.hero h1 .q { color: inherit; }
 
 .hero .lead {
   color: var(--on-dark-mut);
