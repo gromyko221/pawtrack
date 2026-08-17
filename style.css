@@ -140,18 +140,40 @@ nav a:hover { color: var(--accent); }
 }
 
 .hero h1 {
-  font-size: clamp(38px, 5.4vw, 68px);
+  font-size: clamp(30px, 3.9vw, 50px);
   font-weight: 900;
   margin-bottom: 24px;
-  max-width: 19ch;
+  max-width: 24ch;
   color: #fff;
 }
-/* Акцентная точка в конце заголовка — фирменная деталь. */
-.hero h1::after { content: "."; color: var(--accent); }
+/* Оранжевый вопросительный знак: перекликается с цифрами ниже */
+.hero h1 .q { color: #fff; }
 
 .hero .lead {
   color: var(--on-dark-mut);
-  margin-bottom: 38px;
+  margin-bottom: 22px;
+}
+.hero-name { font-weight: 700; color: var(--on-dark); margin-bottom: 10px; }
+
+/* Буллиты на первом экране: свои маркеры-галочки вместо точек */
+.hero-list {
+  list-style: none;
+  margin: 0 0 38px;
+}
+.hero-list li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  color: var(--on-dark-mut);
+  font-size: clamp(16px, 1.3vw, 18px);
+  max-width: 58ch;
+}
+.hero-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--num);
+  font-weight: 800;
 }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
