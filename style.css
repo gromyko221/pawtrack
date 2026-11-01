@@ -140,10 +140,14 @@ nav a:hover { color: var(--accent); }
 }
 
 .hero h1 {
-  font-size: clamp(30px, 3.9vw, 50px);
-  font-weight: 900;
+  font-size: clamp(30px, 3.3vw, 44px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -.015em;
+  text-transform: none;
+  text-wrap: balance;
   margin-bottom: 24px;
-  max-width: 24ch;
+  max-width: 20ch;
   color: #fff;
 }
 /* Вопросительный знак того же цвета, что и заголовок */
@@ -180,8 +184,8 @@ nav a:hover { color: var(--accent); }
 /* Фото Оскара на первом экране: текст слева, фото справа */
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  gap: 56px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 48px;
   align-items: center;
 }
 .hero-photo { margin: 0; }
