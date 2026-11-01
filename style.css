@@ -177,6 +177,26 @@ nav a:hover { color: var(--accent); }
 }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
+/* Фото Оскара на первом экране: текст слева, фото справа */
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+}
+.hero-photo { margin: 0; }
+.hero-photo img {
+  width: 100%; height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .35);
+  display: block;
+}
+.hero-photo figcaption {
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--on-dark-mut);
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -538,6 +558,7 @@ footer::before {
 @media (max-width: 720px) {
   section { padding: 64px 0; }
   .hero { padding: 84px 0 64px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
   nav { display: none; }
   .product { grid-template-columns: 1fr; gap: 28px; }
   .card { padding: 26px 22px; }
