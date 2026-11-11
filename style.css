@@ -28,9 +28,9 @@
 
   --dark:        #16293f;   /* тёмно-синий посветлее */
   --dark-2:      #1e3450;
-  --dark-line:   #2d4360;
+  --dark-line:   rgba(255, 255, 255, .16);   /* линии на синем фоне */
   --on-dark:     #eef3f9;   /* текст на тёмном */
-  --on-dark-mut: #93a3b8;   /* приглушённый текст на тёмном */
+  --on-dark-mut: #c9d5e4;   /* приглушённый текст на синем: светлее, фон стал ярче */
 
   --ink:         #0f1722;   /* текст на светлом */
   --muted:       #5a6676;
@@ -102,7 +102,7 @@ header::before {
   content: "";
   position: absolute;
   inset: 0 -50vw;
-  background: linear-gradient(120deg, rgba(19, 35, 57, .92), rgba(30, 60, 97, .92));
+  background: linear-gradient(120deg, rgba(31, 61, 99, .92), rgba(46, 92, 146, .92));
   backdrop-filter: saturate(160%) blur(10px);
   border-bottom: 1px solid var(--dark-line);
   z-index: -1;
@@ -172,9 +172,9 @@ nav a:hover { color: var(--accent); }
      слева внизу, а в основе — диагональный градиент из глубокого
      синего в более яркий. Движение цвета = ощущение технологичности. */
   background:
-    radial-gradient(900px 420px at 75% 10%, rgba(84, 178, 255, .22), transparent 65%),
-    radial-gradient(600px 320px at 15% 90%, rgba(211, 220, 230, .07), transparent 70%),
-    linear-gradient(135deg, #132339 0%, #1b3a5e 55%, #265089 100%);
+    radial-gradient(900px 460px at 78% 8%, rgba(125, 200, 255, .38), transparent 65%),
+    radial-gradient(700px 360px at 10% 95%, rgba(240, 118, 31, .14), transparent 70%),
+    linear-gradient(135deg, #1f3d63 0%, #2b5788 55%, #3d75b5 100%);
   z-index: -1;
 }
 
@@ -537,7 +537,13 @@ td.phase {
 
 /* --- ТЁМНАЯ СЕКЦИЯ (прототип) ------------------------------- */
 .dark {
-  background: linear-gradient(160deg, #132339 0%, #1b3a5e 100%);
+  /* Синий градиент со свечением: сверху справа голубой блик,
+     снизу слева тёплый оранжевый отсвет, в основе переход
+     из глубокого синего в яркий */
+  background:
+    radial-gradient(900px 480px at 90% 0%, rgba(125, 200, 255, .32), transparent 65%),
+    radial-gradient(800px 420px at 0% 100%, rgba(240, 118, 31, .12), transparent 70%),
+    linear-gradient(160deg, #1f3d63 0%, #2a5486 55%, #3a6fae 100%);
   color: var(--on-dark);
 }
 .dark h2 { color: #fff; }
@@ -878,7 +884,7 @@ footer::before {
   content: "";
   position: absolute;
   inset: 0 -50vw;
-  background: linear-gradient(135deg, #132339, #1e3f66);
+  background: linear-gradient(135deg, #1f3d63, #2e5c92);
   z-index: -1;
 }
 
@@ -904,7 +910,7 @@ footer::before {
     width: 100vw;
     flex-direction: column;
     padding: 8px 24px 16px;
-    background: #16293f;
+    background: linear-gradient(160deg, #1f3d63, #2b5788);
     border-bottom: 1px solid var(--dark-line);
     box-shadow: 0 18px 30px rgba(0, 0, 0, .3);
   }
