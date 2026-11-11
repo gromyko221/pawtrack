@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Biotrek для профессионалов: ветеринарам и животноводству</title>
   <meta name="description" content="Научные данные о мониторинге двигательной активности животных: объективный анамнез для ветеринаров, раннее выявление заболеваний в молочном животноводстве.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Biotrek">
+  <meta property="og:title" content="Biotrek для профессионалов: ветеринарам и животноводству">
+  <meta property="og:description" content="Научные данные о мониторинге двигательной активности животных: объективный анамнез для ветеринаров, раннее выявление заболеваний в молочном животноводстве.">
+  <meta property="og:url" content="https://gromyko221.github.io/pawtrack/professionals.html">
+  <meta property="og:image" content="https://gromyko221.github.io/pawtrack/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Оскар, золотистый ретривер, на траве">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,7 +27,10 @@
   <div class="wrap">
     <header>
       <div class="logo">Biotrek</div>
-      <nav>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav">
         <a href="index.html">← На главную</a>
         <a href="#vets">Ветеринарам</a>
         <a href="#agro">Животноводству</a>
@@ -133,14 +150,14 @@
         </thead>
         <tbody>
           <tr>
-            <td class="phase">Фаза 1</td>
-            <td>Владельцы собак, ветклиники</td>
-            <td>Индивидуальная норма активности, ранние отклонения, отчёт для врача</td>
+            <td class="phase" data-label="Фаза">Фаза 1</td>
+            <td data-label="Сегмент">Владельцы собак, ветклиники</td>
+            <td data-label="Задача">Индивидуальная норма активности, ранние отклонения, отчёт для врача</td>
           </tr>
           <tr>
-            <td class="phase">Фаза 2</td>
-            <td>Фермерские хозяйства (КРС, козы)</td>
-            <td>Групповой мониторинг: раннее выявление болезни, охота, экономика стада</td>
+            <td class="phase" data-label="Фаза">Фаза 2</td>
+            <td data-label="Сегмент">Фермерские хозяйства (КРС, козы)</td>
+            <td data-label="Задача">Групповой мониторинг: раннее выявление болезни, охота, экономика стада</td>
           </tr>
         </tbody>
       </table>

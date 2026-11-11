@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Biotrek: трекер активности и здоровья собак</title>
   <meta name="description" content="Biotrek: носимый трекер активности для собак. Личная норма движения, раннее выявление отклонений, понятный отчёт для ветеринара.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Biotrek">
+  <meta property="og:title" content="Biotrek: трекер активности и здоровья собак">
+  <meta property="og:description" content="Biotrek: носимый трекер активности для собак. Личная норма движения, раннее выявление отклонений, понятный отчёт для ветеринара.">
+  <meta property="og:url" content="https://gromyko221.github.io/pawtrack/">
+  <meta property="og:image" content="https://gromyko221.github.io/pawtrack/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Оскар, золотистый ретривер, на траве">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,7 +27,10 @@
   <div class="wrap">
     <header>
       <div class="logo">Biotrek</div>
-      <nav>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav">
         <a href="#why">Почему это важно</a>
         <a href="#product">Продукт</a>
         <a href="#norms">Нормы активности</a>
@@ -141,8 +158,17 @@
       </p>
 
       <div class="product">
-        <img class="photo" src="infografika.jpg"
-             alt="Схема размещения Biotrek: устройство крепится на шлейке в области холки, между лопатками">
+        <figure class="product-figure">
+          <a class="zoom" href="infografika.jpg" target="_blank" rel="noopener" aria-label="Открыть схему размещения крупно">
+            <img class="photo" src="infografika.jpg"
+                 alt="Схема размещения Biotrek: устройство крепится на шлейке в области холки, между лопатками">
+          </a>
+          <figcaption>
+            <strong>Почему на холке.</strong> Между лопатками датчик почти не болтается и движется
+            вместе с телом, поэтому точнее считает шаги на шаге, рыси и галопе.
+            <a href="infografika.jpg" target="_blank" rel="noopener">Открыть схему крупно ↗</a>
+          </figcaption>
+        </figure>
 
         <div>
           <h3>Что делает устройство</h3>
@@ -193,7 +219,7 @@
           <figcaption>Плата в сборе, основа носимого датчика</figcaption>
         </figure>
         <figure>
-          <video src="testirovanie.mp4" controls preload="metadata" playsinline></video>
+          <video src="testirovanie.mp4" poster="poster-testirovanie.jpg" controls preload="metadata" playsinline></video>
           <figcaption>Испытание прототипа в движении</figcaption>
         </figure>
       </div>
@@ -215,40 +241,40 @@
         </thead>
         <tbody>
           <tr>
-            <td class="phase">Той-породы</td>
-            <td>чихуахуа, йорк, той-терьер</td>
-            <td>30–60 минут</td>
-            <td>4–6 тысяч</td>
+            <td class="phase" data-label="Группа пород">Той-породы</td>
+            <td data-label="Примеры">чихуахуа, йорк, той-терьер</td>
+            <td data-label="Активность в день">30–60 минут</td>
+            <td data-label="Примерно шагов">4–6 тысяч</td>
           </tr>
           <tr>
-            <td class="phase">Мелкие</td>
-            <td>такса, ши-тцу, джек-рассел</td>
-            <td>40–70 минут</td>
-            <td>5–8 тысяч</td>
+            <td class="phase" data-label="Группа пород">Мелкие</td>
+            <td data-label="Примеры">такса, ши-тцу, джек-рассел</td>
+            <td data-label="Активность в день">40–70 минут</td>
+            <td data-label="Примерно шагов">5–8 тысяч</td>
           </tr>
           <tr>
-            <td class="phase">Средние</td>
-            <td>бигль, кокер-спаниель, шелти</td>
-            <td>60–90 минут</td>
-            <td>8–12 тысяч</td>
+            <td class="phase" data-label="Группа пород">Средние</td>
+            <td data-label="Примеры">бигль, кокер-спаниель, шелти</td>
+            <td data-label="Активность в день">60–90 минут</td>
+            <td data-label="Примерно шагов">8–12 тысяч</td>
           </tr>
           <tr>
-            <td class="phase">Крупные активные</td>
-            <td>лабрадор, овчарка, хаски</td>
-            <td>90–120+ минут</td>
-            <td>12–18 тысяч</td>
+            <td class="phase" data-label="Группа пород">Крупные активные</td>
+            <td data-label="Примеры">лабрадор, овчарка, хаски</td>
+            <td data-label="Активность в день">90–120+ минут</td>
+            <td data-label="Примерно шагов">12–18 тысяч</td>
           </tr>
           <tr>
-            <td class="phase">Брахицефалы</td>
-            <td>мопс, бульдог, пекинес</td>
-            <td>30–45 минут, дробно</td>
-            <td>4–6 тысяч</td>
+            <td class="phase" data-label="Группа пород">Брахицефалы</td>
+            <td data-label="Примеры">мопс, бульдог, пекинес</td>
+            <td data-label="Активность в день">30–45 минут, дробно</td>
+            <td data-label="Примерно шагов">4–6 тысяч</td>
           </tr>
           <tr>
-            <td class="phase">Пожилые собаки</td>
-            <td>любая порода, 7+ лет</td>
-            <td>30–60 минут, мягко</td>
-            <td>5–8 тысяч</td>
+            <td class="phase" data-label="Группа пород">Пожилые собаки</td>
+            <td data-label="Примеры">любая порода, 7+ лет</td>
+            <td data-label="Активность в день">30–60 минут, мягко</td>
+            <td data-label="Примерно шагов">5–8 тысяч</td>
           </tr>
         </tbody>
       </table>
@@ -296,10 +322,10 @@
           </p>
         </div>
         <div class="card">
-          <h3>Разработано здесь</h3>
+          <h3>Разработано в Москве</h3>
           <p>
-            Своя инженерная разработка: поддержка, сервис и доработка под запросы
-            пользователей без зависимости от зарубежных поставок.
+            Своя инженерная разработка в Москве, Россия: поддержка, сервис и доработка
+            под запросы пользователей без зависимости от зарубежных поставок.
           </p>
         </div>
         <div class="card">

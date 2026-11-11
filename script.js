@@ -113,6 +113,47 @@ if (form) {
 }
 
 
+/* ------------------------------------------------------------
+   ЗАДАЧА 3. Меню на телефоне.
+
+   На узком экране ссылки меню спрятаны, вместо них кнопка
+   с тремя полосками. Нажали — меню выпало, нажали ещё раз
+   или выбрали пункт — меню закрылось.
+   ------------------------------------------------------------ */
+
+const header = document.querySelector("header");
+const menuButton = document.querySelector(".menu-btn");
+
+if (header && menuButton) {
+
+  // Одна функция и для открытия, и для закрытия.
+  // open — true или false: открыть или закрыть.
+  function setMenu(open) {
+    // toggle с вторым аргументом: true добавляет класс, false убирает
+    header.classList.toggle("menu-open", open);
+    // aria-expanded сообщает программам чтения с экрана,
+    // открыто меню или нет
+    menuButton.setAttribute("aria-expanded", open);
+    menuButton.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+  }
+
+  menuButton.addEventListener("click", function () {
+    const isOpen = header.classList.contains("menu-open");
+    setMenu(!isOpen);   // ! переворачивает: было открыто → закрыть
+  });
+
+  // Выбрали пункт меню → закрываем, чтобы меню не загораживало раздел
+  header.querySelectorAll("nav a").forEach(function (link) {
+    link.addEventListener("click", function () { setMenu(false); });
+  });
+
+  // Клавиша Escape тоже закрывает меню
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") setMenu(false);
+  });
+}
+
+
 /* ============================================================
    ГЛАВНОЕ ИЗ ЭТОГО ФАЙЛА
 

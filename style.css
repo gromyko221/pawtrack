@@ -42,6 +42,12 @@
 
 html { scroll-behavior: smooth; }
 
+/* Тёмные фоны шапки, хиро и подвала растянуты псевдоэлементами
+   далеко за края экрана. Без этой строки страницу можно было
+   прокрутить вбок в пустоту. clip, а не hidden: hidden ломает
+   «липкую» шапку (position: sticky), а clip её не трогает. */
+html, body { overflow-x: clip; }
+
 body {
   font-family: 'Inter', system-ui, -apple-system, "Segoe UI", sans-serif;
   color: var(--ink);
@@ -115,6 +121,32 @@ nav a {
   transition: color .18s;
 }
 nav a:hover { color: var(--accent); }
+
+/* Кнопка-«бургер»: три полоски. На компьютере её не видно,
+   она появляется только на телефоне (см. блок ТЕЛЕФОН внизу). */
+.menu-btn {
+  display: none;
+  width: 44px; height: 44px;          /* 44px: удобно попасть пальцем */
+  padding: 12px 10px;
+  background: transparent;
+  border: 1px solid var(--dark-line);
+  border-radius: 12px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.menu-btn span {
+  display: block;
+  height: 2px;
+  background: var(--on-dark);
+  border-radius: 2px;
+  transition: transform .2s ease, opacity .2s ease;
+}
+/* Открытое меню: полоски складываются в крестик */
+.menu-open .menu-btn span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.menu-open .menu-btn span:nth-child(2) { opacity: 0; }
+.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.menu-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 
 /* --- ПЕРВЫЙ ЭКРАН (тёмный) ----------------------------------
@@ -359,6 +391,25 @@ td.phase {
   display: block;
 }
 
+/* Инфографика: по клику открывается крупно, а главная мысль
+   продублирована обычным текстом, который читается на любом экране. */
+.product-figure { margin: 0; }
+.product-figure .zoom { display: block; cursor: zoom-in; }
+.product-figure figcaption {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.product-figure figcaption strong { color: var(--ink); }
+.product-figure figcaption a {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--ink);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
 .specs { list-style: none; margin: 12px 0 30px; }
 .specs li {
   position: relative;
@@ -563,11 +614,83 @@ footer::before {
   section { padding: 64px 0; }
   .hero { padding: 84px 0 64px; }
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-  nav { display: none; }
   .product { grid-template-columns: 1fr; gap: 28px; }
   .card { padding: 26px 22px; }
-  th, td { padding: 14px 16px; }
   .btn, .btn-ghost { width: 100%; }
+
+  /* Меню на телефоне: вместо строки ссылок кнопка-бургер.
+     По нажатию script.js вешает на шапку класс menu-open,
+     и список ссылок выпадает под шапкой. */
+  .menu-btn { display: flex; }
+  nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* Меню на всю ширину экрана: шапка уже экрана на отступы .wrap,
+       поэтому сдвигаемся влево на разницу и берём ширину 100vw */
+    left: calc(50% - 50vw);
+    width: 100vw;
+    flex-direction: column;
+    padding: 8px 24px 16px;
+    background: #16293f;
+    border-bottom: 1px solid var(--dark-line);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, .3);
+  }
+  .menu-open nav { display: flex; }
+  nav a {
+    margin: 0;
+    padding: 14px 0;
+    font-size: 14px;
+    color: var(--on-dark);
+    border-top: 1px solid var(--dark-line);
+  }
+  nav a:first-child { border-top: none; }
+
+  /* Таблицы на телефоне: каждая строка становится карточкой,
+     а название колонки берётся из атрибута data-label у ячейки. */
+  table, thead, tbody, tr, th, td { display: block; }
+  table { border: none; background: transparent; overflow: visible; }
+  thead { display: none; }
+  tbody tr {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+  tbody tr:hover { background: #fff; }
+  td {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 7px 0;
+    border-bottom: none;
+    text-align: right;
+  }
+  td::before {
+    content: attr(data-label);
+    flex: none;
+    max-width: 45%;
+    text-align: left;
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+  /* Первая ячейка (группа пород, фаза) служит заголовком карточки */
+  td.phase {
+    display: block;
+    text-align: left;
+    font-size: 15px;
+    white-space: normal;
+    padding: 0 0 8px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--line);
+  }
+  td.phase::before { display: none; }
 }
 
 
