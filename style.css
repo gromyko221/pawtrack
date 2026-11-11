@@ -1066,6 +1066,20 @@ footer::before {
   height: auto;
   border-radius: 35px;
 }
+/* Экран открывается крупно по клику: на компьютере текст
+   внутри телефона мелкий, а так его можно прочитать */
+.phone-zoom { display: block; cursor: zoom-in; }
+.phone { transition: transform .25s ease, box-shadow .25s ease; }
+.phone:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 0 1px var(--dark-line), 0 40px 70px rgba(0, 0, 0, .45);
+}
+.phone-zoom:focus-visible { outline: none; }
+.phone:has(.phone-zoom:focus-visible) { box-shadow: 0 0 0 3px var(--accent), 0 30px 60px rgba(0, 0, 0, .35); }
+
+/* Подсказка «листайте» видна только на телефоне (см. ниже) */
+.swipe-hint { display: none; }
+
 .phone-fig > figcaption { font-size: 14px; font-weight: 600; color: var(--on-dark); }
 .phone-fig figcaption h3 { color: #fff; margin-bottom: 6px; }
 .phone-fig figcaption p {
@@ -1095,4 +1109,17 @@ footer::before {
     border-top: none;
   }
   .app-screens .phone-fig { flex: 0 0 76%; scroll-snap-align: center; }
+  .app-screens { scrollbar-width: none; }
+  .app-screens::-webkit-scrollbar { display: none; }
+  .swipe-hint {
+    display: block;
+    margin: 48px 0 -24px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--on-dark-mut);
+    text-align: center;
+  }
+  .phone:hover { transform: none; }
 }
