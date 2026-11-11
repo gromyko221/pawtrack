@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 
 /* ============================================================
    style.css — Biotrek. Спортивно-технологичная тема
@@ -7,17 +7,24 @@
    Рецепт стиля:
    • тёмный первый экран с крупным заголовком КАПСОМ (WHOOP)
    • светлые продуктовые секции с большими карточками (Garmin)
-   • энергичный зелёный акцент на тёмном
-   • шрифты: Archivo для заголовков (жирный, собранный),
-     Inter для текста (нейтральный, читаемый)
+   • один акцент на весь сайт: оранжевый. Им покрашены кнопки,
+     галочки и ключевые цифры, больше ничем
+   • шрифты: Onest для заголовков (жирный, собранный, с кириллицей:
+     у прежнего Archivo русских букв не было, и они подменялись другим
+     шрифтом), Inter для текста (нейтральный, читаемый)
    ============================================================ */
 
 
 /* --- ПЕРЕМЕННЫЕ --------------------------------------------- */
 :root {
-  --accent:      #d3dce6;   /* светло-серый акцент, холодный */
-  --accent-dark: #b9c6d4;
-  --accent-soft: #eef2f6;   /* очень светлая серо-голубая подложка */
+  /* Единственный акцент сайта. Тёмно-синий текст на оранжевой
+     кнопке даёт контраст 5,1:1, этого хватает для любого текста. */
+  --accent:      #f0761f;   /* оранжевый: кнопки, галочки */
+  --accent-dark: #ff8a3d;   /* кнопка при наведении, чуть светлее */
+  --accent-ink:  #c95a0c;   /* оранжевый ТЕКСТ на белом: темнее, чтобы читался (4,2:1) */
+  --accent-soft: #fff1e6;   /* бледно-оранжевая подложка под значки */
+
+  --neutral-soft: #eef2f6;  /* нейтральная серо-голубая подложка (примечания, таблица) */
 
   --dark:        #16293f;   /* тёмно-синий посветлее */
   --dark-2:      #1e3450;
@@ -33,7 +40,7 @@
 
   --radius:      16px;
 
-  --num:         #f0761f;   /* оранжевый для ключевых цифр исследований */
+  --num:         var(--accent-ink);   /* ключевые цифры исследований */
 }
 
 
@@ -62,18 +69,18 @@ body {
 section { padding: 104px 0; }
 .soft   { background: var(--bg-soft); }
 
-/* Заголовки капсом — фирменный приём спортивных брендов.
-   letter-spacing чуть отрицательный у крупных, чуть положительный
-   у мелких надписей-ярлыков. */
+/* Заголовки обычным регистром: по-русски длинные слова капсом
+   читаются тяжело. Капс остался только у мелких ярлыков
+   (меню, кнопки, подписи над полями), там он работает как метка. */
 h1, h2, h3 {
-  font-family: 'Archivo', 'Inter', sans-serif;
-  line-height: 1.08;
+  font-family: 'Onest', 'Inter', sans-serif;
+  line-height: 1.12;
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -.01em;
+  letter-spacing: -.015em;
+  text-wrap: balance;
 }
-h2 { font-size: clamp(28px, 3.4vw, 44px); margin-bottom: 18px; }
-h3 { font-size: 17px; margin-bottom: 10px; letter-spacing: .02em; }
+h2 { font-size: clamp(30px, 3.6vw, 46px); margin-bottom: 18px; letter-spacing: -.025em; }
+h3 { font-size: 19px; font-weight: 700; margin-bottom: 8px; letter-spacing: -.01em; }
 
 .lead {
   color: var(--muted);
@@ -102,7 +109,7 @@ header::before {
 }
 
 .logo {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Onest', sans-serif;
   font-weight: 900;
   font-size: 20px;
   text-transform: uppercase;
@@ -208,7 +215,7 @@ nav a:hover { color: var(--accent); }
   content: "✓";
   position: absolute;
   left: 0;
-  color: var(--num);
+  color: var(--accent);
   font-weight: 800;
 }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
@@ -238,7 +245,7 @@ nav a:hover { color: var(--accent); }
   align-items: center;
   gap: 9px;
   background: rgba(211, 220, 230, .1);
-  color: var(--accent);
+  color: var(--on-dark);
   border: 1px solid rgba(211, 220, 230, .35);
   border-radius: 999px;
   padding: 8px 16px;
@@ -264,11 +271,11 @@ nav a:hover { color: var(--accent); }
   justify-content: center;
   gap: 8px;
   background: var(--accent);
-  color: #16293f;                 /* тёмно-синий текст на светло-сером */
+  color: #16293f;                 /* тёмно-синий текст на оранжевом */
   padding: 16px 34px;
   border-radius: 999px;
   text-decoration: none;
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Onest', sans-serif;
   font-weight: 800;
   font-size: 14px;
   text-transform: uppercase;
@@ -300,7 +307,7 @@ nav a:hover { color: var(--accent); }
 /* --- КАРТОЧКИ (светлые секции, дух Garmin) ------------------ */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));   /* 4 карточки встают в один ряд */
   gap: 22px;
   margin-top: 44px;
 }
@@ -325,7 +332,7 @@ nav a:hover { color: var(--accent); }
   border-radius: 12px;
   font-size: 22px;
   font-weight: 800;
-  color: var(--ink);
+  color: var(--accent-ink);
   margin-bottom: 18px;
 }
 
@@ -342,7 +349,7 @@ table {
 }
 th, td { text-align: left; padding: 18px 22px; border-bottom: 1px solid var(--line); }
 th {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Onest', sans-serif;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .12em;
@@ -351,13 +358,11 @@ th {
   font-weight: 700;
 }
 tbody tr:last-child td { border-bottom: none; }
-tbody tr:hover { background: var(--accent-soft); }
+tbody tr:hover { background: var(--neutral-soft); }
 td.phase {
-  font-family: 'Archivo', sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
-  font-size: 13px;
-  letter-spacing: .04em;
+  font-family: 'Onest', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
   color: var(--ink);
   white-space: nowrap;
 }
@@ -424,7 +429,7 @@ td.phase {
   width: 20px; height: 20px;
   display: flex; align-items: center; justify-content: center;
   background: var(--accent-soft);
-  color: var(--ink);
+  color: var(--accent-ink);
   border-radius: 50%;
   font-size: 12px;
   font-weight: 800;
@@ -439,7 +444,7 @@ td.phase {
 }
 .step { padding-top: 20px; border-top: 3px solid var(--ink); }
 .step .num {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Onest', sans-serif;
   font-size: 30px;
   font-weight: 900;
   color: var(--ink);
@@ -464,10 +469,10 @@ td.phase {
   flex-direction: column;
 }
 .stat .big {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Onest', sans-serif;
   font-size: clamp(30px, 3vw, 40px);
   font-weight: 900;
-  color: var(--num);   /* оранжевый: главные цифры должны бросаться в глаза */
+  color: var(--accent-ink);   /* оранжевый: главные цифры должны бросаться в глаза */
   margin-bottom: 12px;
   letter-spacing: -.02em;
 }
@@ -483,7 +488,7 @@ td.phase {
 
 /* Плашка-примечание */
 .note {
-  background: var(--accent-soft);
+  background: var(--neutral-soft);
   border-left: 4px solid var(--dark);
   border-radius: 0 var(--radius) var(--radius) 0;
   padding: 20px 24px;
@@ -529,12 +534,281 @@ td.phase {
 }
 
 
+
+/* --- ТЁМНАЯ СЕКЦИЯ (прототип) ------------------------------- */
+.dark {
+  background: linear-gradient(160deg, #132339 0%, #1b3a5e 100%);
+  color: var(--on-dark);
+}
+.dark h2 { color: #fff; }
+.dark .lead { color: var(--on-dark-mut); }
+
+
+/* --- ПРИМЕР ОТЧЁТА И ФУНКЦИИ -------------------------------- */
+.solution {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+  margin-top: 48px;
+}
+
+/* Карточка «как в приложении» */
+.report {
+  margin: 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 26px 26px 22px;
+  box-shadow: 0 30px 60px rgba(22, 41, 63, .10);
+}
+.report-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.report-title { font-family: 'Onest', sans-serif; font-weight: 700; font-size: 18px; }
+.report-sub { font-size: 14px; color: var(--muted); }
+.report-tag {
+  flex: none;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+  background: var(--neutral-soft);
+  border-radius: 999px;
+  padding: 5px 10px;
+}
+
+/* Сам график: цвета задаём здесь, а не в разметке svg */
+.chart { width: 100%; height: auto; display: block; }
+.chart .band  { fill: #e6f4ea; }                 /* зелёная полоса нормы */
+.chart .band-label { fill: #2f7a47; font-size: 12px; font-weight: 600; }
+.chart .grid  { stroke: var(--line); stroke-width: 1; }
+.chart .ax    { fill: var(--muted); font-size: 12px; }
+.chart .wk    { stroke: var(--line); stroke-width: 1; }
+.chart .bar   { fill: var(--dark); }
+.chart .bar.low { fill: var(--accent); }
+.chart .bracket { fill: none; stroke: var(--accent-ink); stroke-width: 1.5; }
+.chart .drop  { fill: var(--accent-ink); font-family: 'Onest', sans-serif; font-size: 15px; font-weight: 800; }
+.chart text   { font-family: 'Inter', sans-serif; }
+
+.report-alert {
+  margin-top: 16px;
+  padding: 14px 16px 14px 44px;
+  position: relative;
+  background: var(--accent-soft);
+  border-radius: 12px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: #5b2f0f;
+}
+.report-alert::before {               /* значок «внимание» */
+  content: "!";
+  position: absolute;
+  left: 14px; top: 14px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #16293f;
+  font-weight: 800;
+  font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+}
+.report-alert strong { color: #3d1f08; }
+.report-note { margin-top: 12px; font-size: 13px; color: var(--muted); }
+
+/* Четыре функции списком с крупными номерами вместо карточек */
+.functions { list-style: none; counter-reset: fn; }
+.functions li {
+  counter-increment: fn;
+  position: relative;
+  padding: 20px 0 20px 64px;
+  border-top: 1px solid var(--line);
+}
+.functions li:first-child { border-top: none; padding-top: 0; }
+.functions li::before {
+  content: counter(fn);
+  position: absolute;
+  left: 0; top: 18px;
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-family: 'Onest', sans-serif;
+  font-weight: 800;
+  font-size: 19px;
+  display: flex; align-items: center; justify-content: center;
+}
+.functions li:first-child::before { top: -2px; }
+.functions p { color: var(--muted); font-size: 16px; }
+
+
+/* --- ПРОТОТИП: видео крупно + фото + характеристики ---------- */
+.proto {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 44px;
+}
+.proto figure { margin: 0; display: flex; flex-direction: column; }
+.proto video, .proto img {
+  width: 100%;
+  border-radius: var(--radius);
+  display: block;
+  object-fit: cover;
+  background: #0d1a2b;
+}
+.proto-video { grid-column: span 2; }
+.proto-video video { aspect-ratio: 16 / 9; }
+.proto-tall img { flex: 1 1 0; height: 0; min-height: 0; }
+/* height: 0 + flex: 1 значит «не задавай высоту ряда сама, растянись
+   на высоту, которую задало видео рядом» */
+.proto-small img { aspect-ratio: 4 / 3; }
+.proto figcaption { margin-top: 10px; font-size: 14px; color: var(--on-dark-mut); }
+
+/* Характеристики как «паспорт» устройства */
+.proto-specs {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 32px;
+  align-content: center;
+  border: 1px solid var(--dark-line);
+  border-radius: var(--radius);
+  padding: 8px 28px;
+}
+.proto-specs div { padding: 18px 0; border-bottom: 1px solid var(--dark-line); }
+.proto-specs div:nth-last-child(-n+2) { border-bottom: none; }
+.proto-specs dt {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--on-dark-mut);
+  margin-bottom: 4px;
+}
+.proto-specs dd { font-family: 'Onest', sans-serif; font-size: 18px; font-weight: 600; color: #fff; }
+
+
+/* --- ГДЕ НОСИТСЯ ДАТЧИК: реальное фото с меткой ------------- */
+.placement { margin: 0; }
+.placement-photo { position: relative; }
+/* Метка стоит над корпусом прототипа; координаты в процентах,
+   поэтому она остаётся на месте при любой ширине фото */
+.pin {
+  position: absolute;
+  left: 44%; top: 55%;
+  width: 22px; height: 22px;
+  margin: -11px 0 0 -11px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 6px rgba(240, 118, 31, .35);
+  animation: pulse 2.4s ease-out infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(240, 118, 31, .55); }
+  70%  { box-shadow: 0 0 0 16px rgba(240, 118, 31, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(240, 118, 31, 0); }
+}
+.pin-label {
+  position: absolute;
+  left: calc(44% + 22px); top: calc(55% - 52px);
+  background: #fff;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 12px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+  white-space: nowrap;
+}
+.placement figcaption {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.placement figcaption strong { color: var(--ink); }
+
+
+/* --- ОТЛИЧИЯ: список с крупными номерами --------------------- */
+.features {
+  list-style: none;
+  counter-reset: ft;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 56px;
+  margin-top: 40px;
+}
+.features li {
+  counter-increment: ft;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  align-content: start;
+  padding: 30px 0;
+  border-top: 1px solid var(--line);
+}
+.features li::before {
+  content: counter(ft, decimal-leading-zero);   /* 01, 02, 03 */
+  grid-row: span 2;
+  font-family: 'Onest', sans-serif;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent-ink);
+  letter-spacing: -.03em;
+}
+.features p { color: var(--muted); font-size: 16px; }
+.features a { color: var(--ink); text-underline-offset: 3px; }
+
+
+/* --- КОНТАКТ: текст слева, форма в карточке справа ----------- */
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+.perks { list-style: none; margin-top: 26px; }
+.perks li {
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 12px;
+  font-size: 17px;
+}
+.perks li::before {
+  content: "✓";
+  position: absolute;
+  left: 0; top: 2px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-size: 12px;
+  font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.form-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 12px 32px 32px;
+  box-shadow: 0 30px 60px rgba(22, 41, 63, .08);
+}
+.form-card form { margin-top: 0; max-width: none; }
+.form-card .btn { width: 100%; }
+
 /* --- ФОРМА --------------------------------------------------- */
 form { max-width: 520px; margin-top: 34px; }
 
 label {
   display: block;
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Onest', sans-serif;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
@@ -609,16 +883,14 @@ footer::before {
 }
 
 
-/* --- ТЕЛЕФОН ------------------------------------------------- */
-@media (max-width: 720px) {
-  section { padding: 64px 0; }
-  .hero { padding: 84px 0 64px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-  .product { grid-template-columns: 1fr; gap: 28px; }
-  .card { padding: 26px 22px; }
-  .btn, .btn-ghost { width: 100%; }
+/* --- ПЛАНШЕТ ------------------------------------------------- */
+@media (max-width: 960px) {
+  .solution, .contact { grid-template-columns: 1fr; gap: 40px; }
+  .proto { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .proto-video, .proto-specs { grid-column: span 2; }
+  .proto-tall img, .proto-small img { aspect-ratio: 4 / 3; height: auto; flex: none; }
 
-  /* Меню на телефоне: вместо строки ссылок кнопка-бургер.
+  /* Меню на телефоне и планшете: вместо строки ссылок кнопка-бургер.
      По нажатию script.js вешает на шапку класс menu-open,
      и список ссылок выпадает под шапкой. */
   .menu-btn { display: flex; }
@@ -646,6 +918,31 @@ footer::before {
   }
   nav a:first-child { border-top: none; }
 
+}
+
+
+/* --- ТЕЛЕФОН ------------------------------------------------- */
+@media (max-width: 720px) {
+  section { padding: 64px 0; }
+  .hero { padding: 84px 0 64px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .product { grid-template-columns: 1fr; gap: 28px; }
+  .card { padding: 26px 22px; }
+  .btn, .btn-ghost { width: 100%; }
+  .proto, .proto-specs, .features { grid-template-columns: 1fr; }
+  .proto-video, .proto-specs { grid-column: auto; }
+  .proto-specs { padding: 4px 20px; }
+  .proto-specs div:nth-last-child(2) { border-bottom: 1px solid var(--dark-line); }
+  .features li { grid-template-columns: 56px 1fr; padding: 24px 0; }
+  .features li::before { font-size: 28px; }
+  .report { padding: 20px 16px 16px; }
+  /* На узком экране график сжимается, поэтому подписи внутри svg
+     делаем крупнее, чтобы они остались читаемыми */
+  .chart .ax { font-size: 19px; }
+  .chart .band-label { font-size: 19px; }
+  .chart .drop { font-size: 22px; }
+  .form-card { padding: 4px 20px 24px; }
+
   /* Таблицы на телефоне: каждая строка становится карточкой,
      а название колонки берётся из атрибута data-label у ячейки. */
   table, thead, tbody, tr, th, td { display: block; }
@@ -672,7 +969,7 @@ footer::before {
     flex: none;
     max-width: 45%;
     text-align: left;
-    font-family: 'Archivo', sans-serif;
+    font-family: 'Onest', sans-serif;
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;

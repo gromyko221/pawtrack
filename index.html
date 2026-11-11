@@ -113,44 +113,128 @@
     </div>
   </section>
 
-  <!-- ================= РЕШЕНИЕ ================= -->
+  <!-- ================= РЕШЕНИЕ =================
+       Слева пример отчёта из приложения (график рисуется прямо
+       в HTML тегом svg, без картинок), справа четыре функции списком. -->
   <section id="solution">
     <div class="wrap">
       <h2>Biotrek переводит заботу на язык цифр</h2>
       <p class="lead">Носимый трекер снимает данные, приложение объясняет, что они значат.</p>
-      <div class="grid">
-        <div class="card">
-          <div class="ico">1</div>
-          <h3>Считает</h3>
-          <p>Шаги и движение, круглосуточно и без участия человека.
-             Различает отдых, прогулку и активную игру.</p>
-        </div>
-        <div class="card">
-          <div class="ico">2</div>
-          <h3>Сравнивает</h3>
-          <p>Не с абстрактной таблицей, а с личной нормой вашей собаки:
-             возраст, порода, привычный ритм. Норма у чихуахуа и хаски разная.</p>
-        </div>
-        <div class="card">
-          <div class="ico">3</div>
-          <h3>Предупреждает</h3>
-          <p>Активность упала на треть и не восстанавливается? Приложение
-             подскажет показать собаку врачу раньше, чем появятся явные симптомы.</p>
-        </div>
-        <div class="card">
-          <div class="ico">4</div>
-          <h3>Доказывает</h3>
-          <p>Отчёт об активности можно показать ветеринару на приёме.
-             Точные цифры вместо «вроде меньше бегает».</p>
-        </div>
+
+      <div class="solution">
+        <figure class="report">
+          <div class="report-head">
+            <div>
+              <div class="report-title">Активность за 2 недели</div>
+              <div class="report-sub">Минут активного движения в день</div>
+            </div>
+            <span class="report-tag">Пример отчёта</span>
+          </div>
+          <svg class="chart" viewBox="0 0 560 248" role="img" aria-labelledby="chart-title chart-desc">
+            <title id="chart-title">Активность собаки за две недели</title>
+            <desc id="chart-desc">Первые десять дней активность 80–97 минут в день, в пределах личной нормы 75–100 минут. Последние четыре дня она падает до 49–58 минут, примерно на 40% ниже нормы.</desc>
+            <rect class="band" x="44" y="59.0" width="504" height="38.8" rx="4"/>
+            <line class="grid" x1="44" x2="548" y1="214.0" y2="214.0"/>
+            <text class="ax" x="36" y="218.0" text-anchor="end">0</text>
+            <line class="grid" x1="44" x2="548" y1="136.5" y2="136.5"/>
+            <text class="ax" x="36" y="140.5" text-anchor="end">50</text>
+            <line class="grid" x1="44" x2="548" y1="59.0" y2="59.0"/>
+            <text class="ax" x="36" y="63.0" text-anchor="end">100</text>
+            <rect class="bar" x="51.0" y="80.7" width="22" height="133.3" rx="4"><title>День 1: 86 мин</title></rect>
+            <rect class="bar" x="87.0" y="71.4" width="22" height="142.6" rx="4"><title>День 2: 92 мин</title></rect>
+            <rect class="bar" x="123.0" y="88.5" width="22" height="125.5" rx="4"><title>День 3: 81 мин</title></rect>
+            <rect class="bar" x="159.0" y="66.8" width="22" height="147.2" rx="4"><title>День 4: 95 мин</title></rect>
+            <rect class="bar" x="195.0" y="77.6" width="22" height="136.4" rx="4"><title>День 5: 88 мин</title></rect>
+            <rect class="bar" x="231.0" y="91.5" width="22" height="122.5" rx="4"><title>День 6: 79 мин</title></rect>
+            <rect class="bar" x="267.0" y="63.7" width="22" height="150.3" rx="4"><title>День 7: 97 мин</title></rect>
+            <rect class="bar" x="303.0" y="74.5" width="22" height="139.5" rx="4"><title>День 8: 90 мин</title></rect>
+            <rect class="bar" x="339.0" y="83.8" width="22" height="130.2" rx="4"><title>День 9: 84 мин</title></rect>
+            <rect class="bar" x="375.0" y="69.8" width="22" height="144.2" rx="4"><title>День 10: 93 мин</title></rect>
+            <rect class="bar low" x="411.0" y="124.1" width="22" height="89.9" rx="4"><title>День 11: 58 мин</title></rect>
+            <rect class="bar low" x="447.0" y="133.4" width="22" height="80.6" rx="4"><title>День 12: 52 мин</title></rect>
+            <rect class="bar low" x="483.0" y="128.8" width="22" height="85.2" rx="4"><title>День 13: 55 мин</title></rect>
+            <rect class="bar low" x="519.0" y="138.1" width="22" height="76.0" rx="4"><title>День 14: 49 мин</title></rect>
+            <line class="wk" x1="296.0" x2="296.0" y1="220" y2="238"/>
+            <text class="ax" x="170.0" y="236" text-anchor="middle">1-я неделя</text>
+            <text class="ax" x="422.0" y="236" text-anchor="middle">2-я неделя</text>
+            <text class="band-label" x="52" y="51.0">Личная норма: 75–100 мин</text>
+            <path class="bracket" d="M408.0 125.9 V117.9 H544.0 V125.9"/>
+            <text class="drop" x="476.0" y="109.9" text-anchor="middle">−40%</text>
+          </svg>
+          <div class="report-alert">
+            <strong>Активность ниже нормы 4 дня подряд.</strong>
+            Это может быть ранним признаком боли или болезни. Стоит показать собаку ветеринару.
+          </div>
+          <figcaption class="report-note">Данные на графике условные: так будет выглядеть отчёт в приложении.</figcaption>
+        </figure>
+
+        <ol class="functions">
+          <li>
+            <h3>Считает</h3>
+            <p>Шаги и движение, круглосуточно и без участия человека.
+               Различает отдых, прогулку и активную игру.</p>
+          </li>
+          <li>
+            <h3>Сравнивает</h3>
+            <p>Не с абстрактной таблицей, а с личной нормой вашей собаки:
+               возраст, порода, привычный ритм. Норма у чихуахуа и хаски разная.</p>
+          </li>
+          <li>
+            <h3>Предупреждает</h3>
+            <p>Активность упала на треть и не восстанавливается? Приложение
+               подскажет показать собаку врачу раньше, чем появятся явные симптомы.</p>
+          </li>
+          <li>
+            <h3>Доказывает</h3>
+            <p>Отчёт об активности можно показать ветеринару на приёме.
+               Точные цифры вместо «вроде меньше бегает».</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ПРОТОТИП =================
+       Тёмная секция: настоящие фото и видео смотрятся на ней ярче.
+       Крупно и сразу после описания продукта, потому что это главное
+       доказательство, что устройство существует. -->
+  <section class="dark" id="prototype">
+    <div class="wrap">
+      <span class="badge">Стадия: рабочий прототип, идут испытания на животных</span>
+      <h2>Прототип без прикрас</h2>
+      <p class="lead">
+        Это не рендер. Так Biotrek выглядит сейчас: самодельный корпус,
+        плата и акселерометр, испытания на настоящей собаке.
+      </p>
+
+      <div class="proto">
+        <figure class="proto-video">
+          <video src="testirovanie.mp4" poster="poster-testirovanie.jpg" controls preload="metadata" playsinline></video>
+          <figcaption>Испытание прототипа в движении, 33 секунды</figcaption>
+        </figure>
+        <figure class="proto-tall">
+          <img src="prototip-vnutri.jpg" loading="lazy"
+               alt="Внутренности прототипа: аккумулятор, плата ESP32, акселерометр и индикатор заряда в корпусе">
+          <figcaption>Начинка в корпусе</figcaption>
+        </figure>
+        <figure class="proto-small">
+          <img src="prototip-plata.jpg" loading="lazy"
+               alt="Плата расширения ESP32 крупным планом в руке">
+          <figcaption>Плата в сборе, основа датчика</figcaption>
+        </figure>
+        <dl class="proto-specs">
+          <div><dt>Контроллер</dt><dd>ESP32</dd></div>
+          <div><dt>Акселерометр</dt><dd>MPU-6050</dd></div>
+          <div><dt>Питание</dt><dd>Аккумулятор с индикатором заряда</dd></div>
+          <div><dt>Крепление</dt><dd>Прозрачный корпус на шлейке, в области холки</dd></div>
+        </dl>
       </div>
     </div>
   </section>
 
   <!-- ================= ПРОДУКТ ================= -->
-  <section class="soft" id="product">
+  <section id="product">
     <div class="wrap">
-      <span class="badge">Стадия: рабочий прототип, идут испытания на животных</span>
       <h2>Как устроен Biotrek</h2>
       <p class="lead">
         Датчик на шлейке, приложение на телефоне и понятный отчёт, который можно
@@ -158,15 +242,16 @@
       </p>
 
       <div class="product">
-        <figure class="product-figure">
-          <a class="zoom" href="infografika.jpg" target="_blank" rel="noopener" aria-label="Открыть схему размещения крупно">
-            <img class="photo" src="infografika.jpg"
-                 alt="Схема размещения Biotrek: устройство крепится на шлейке в области холки, между лопатками">
-          </a>
+        <figure class="placement">
+          <div class="placement-photo">
+            <img class="photo" src="prototip-na-sobake.jpg" width="640" height="480" loading="lazy"
+                 alt="Собака на прогулке, на спине между лопатками закреплён прозрачный корпус прототипа Biotrek">
+            <span class="pin" aria-hidden="true"></span>
+            <span class="pin-label" aria-hidden="true">Датчик на холке</span>
+          </div>
           <figcaption>
-            <strong>Почему на холке.</strong> Между лопатками датчик почти не болтается и движется
-            вместе с телом, поэтому точнее считает шаги на шаге, рыси и галопе.
-            <a href="infografika.jpg" target="_blank" rel="noopener">Открыть схему крупно ↗</a>
+            <strong>Почему на холке.</strong> Между лопатками датчик почти не болтается
+            и движется вместе с телом, поэтому точнее считает шаги на шаге, рыси и галопе.
           </figcaption>
         </figure>
 
@@ -187,47 +272,11 @@
           </ul>
         </div>
       </div>
-
-      <div class="steps">
-        <div class="step">
-          <div class="num">1</div>
-          <h3>Носит животное</h3>
-          <p>Датчик крепится на шлейку в области холки и не мешает животному.</p>
-        </div>
-        <div class="step">
-          <div class="num">2</div>
-          <h3>Данные идут в приложение</h3>
-          <p>Активность за день, динамика за неделю, сравнение с нормой животного.</p>
-        </div>
-        <div class="step">
-          <div class="num">3</div>
-          <h3>Вы видите отклонение</h3>
-          <p>Приложение подсказывает, когда стоит показать животное врачу.</p>
-        </div>
-      </div>
-
-      <h3 class="gallery-title">Прототип без прикрас</h3>
-      <div class="gallery">
-        <figure>
-          <img src="prototip-vnutri.jpg"
-               alt="Внутренности прототипа: аккумулятор, плата ESP32, акселерометр и индикатор заряда в корпусе">
-          <figcaption>Начинка: контроллер ESP32, акселерометр MPU-6050, аккумулятор и индикатор заряда</figcaption>
-        </figure>
-        <figure>
-          <img src="prototip-plata.jpg"
-               alt="Плата расширения ESP32 крупным планом в руке">
-          <figcaption>Плата в сборе, основа носимого датчика</figcaption>
-        </figure>
-        <figure>
-          <video src="testirovanie.mp4" poster="poster-testirovanie.jpg" controls preload="metadata" playsinline></video>
-          <figcaption>Испытание прототипа в движении</figcaption>
-        </figure>
-      </div>
     </div>
   </section>
 
   <!-- ================= НОРМЫ АКТИВНОСТИ ================= -->
-  <section id="norms">
+  <section class="soft" id="norms">
     <div class="wrap">
       <h2>Сколько должна двигаться собака</h2>
       <p class="lead">
@@ -296,84 +345,86 @@
     </div>
   </section>
 
-  <!-- ================= ОТЛИЧИЯ ================= -->
-  <section class="soft" id="different">
+  <!-- ================= ОТЛИЧИЯ =================
+       Не карточками, а списком с крупными номерами: так блок
+       не похож на соседние и читается быстрее. -->
+  <section id="different">
     <div class="wrap">
       <h2>Чем Biotrek отличается</h2>
       <p class="lead">
         Ошейники с GPS в магазинах есть. Они отвечают на вопрос «где собака».
         Biotrek отвечает на другой: «как она себя чувствует».
       </p>
-      <div class="grid">
-        <div class="card">
+      <ol class="features">
+        <li>
           <h3>Здоровье, а не геолокация</h3>
-          <p>
-            Ошейники, которые продаются сейчас, нужны в первую очередь для
-            поиска потерявшегося питомца. Мы делаем другое: наблюдение
-            за самочувствием изо дня в день.
-          </p>
-        </div>
-        <div class="card">
+          <p>Ошейники, которые продаются сейчас, нужны в первую очередь для
+             поиска потерявшегося питомца. Мы делаем другое: наблюдение
+             за самочувствием изо дня в день.</p>
+        </li>
+        <li>
           <h3>Отчёт для ветеринара</h3>
-          <p>
-            Данные можно сохранить и показать врачу на приёме. Врач увидит,
-            как собака двигалась последние недели, а не только то, что
-            вспомнит хозяин.
-          </p>
-        </div>
-        <div class="card">
+          <p>Данные можно сохранить и показать врачу на приёме. Врач увидит,
+             как собака двигалась последние недели, а не только то, что
+             вспомнит хозяин.</p>
+        </li>
+        <li>
           <h3>Разработано в Москве</h3>
-          <p>
-            Своя инженерная разработка в Москве, Россия: поддержка, сервис и доработка
-            под запросы пользователей без зависимости от зарубежных поставок.
-          </p>
-        </div>
-        <div class="card">
+          <p>Своя инженерная разработка в Москве, Россия: поддержка, сервис и доработка
+             под запросы пользователей без зависимости от зарубежных поставок.</p>
+        </li>
+        <li>
           <h3>Не только для собак</h3>
-          <p>
-            Тот же принцип работает и для домашних животных, и для хозяйств.
-            Начинаем с собак, масштабируем на КРС.
-            <a href="professionals.html">Подробнее для профессионалов →</a>
-          </p>
-        </div>
-      </div>
+          <p>Тот же принцип работает и для домашних животных, и для хозяйств.
+             Начинаем с собак, масштабируем на КРС.
+             <a href="professionals.html">Подробнее для профессионалов →</a></p>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- ================= КОНТАКТ ================= -->
-  <section id="contact">
-    <div class="wrap">
-      <h2>Попробуйте Biotrek первыми</h2>
-      <p class="lead">
-        Собираем пилотную группу: владельцы собак и ветеринарные клиники.
-        Участники получают устройство раньше всех и влияют на то, каким оно станет.
-        Отвечаем в течение двух дней.
-      </p>
+  <!-- ================= КОНТАКТ =================
+       Слева зачем вступать, справа форма в белой карточке. -->
+  <section class="soft" id="contact">
+    <div class="wrap contact">
+      <div>
+        <h2>Попробуйте Biotrek первыми</h2>
+        <p class="lead">
+          Собираем пилотную группу: владельцы собак и ветеринарные клиники.
+        </p>
+        <ul class="perks">
+          <li>Получаете устройство раньше всех</li>
+          <li>Влияете на то, каким оно станет</li>
+          <li>Отвечаем в течение двух дней</li>
+        </ul>
+      </div>
 
-      <div id="form-status"></div>
+      <div class="form-card">
+        <div id="form-status"></div>
 
-      <form id="lead-form" action="https://formspree.io/f/mljrwodj" method="POST">
-        <input type="hidden" name="_subject" value="Новая заявка с сайта Biotrek">
-        <input type="text" name="_gotcha" style="display:none">
-        <label for="name">Имя</label>
-        <input id="name" name="name" type="text" placeholder="Как к вам обращаться" required>
+        <form id="lead-form" action="https://formspree.io/f/mljrwodj" method="POST">
+          <input type="hidden" name="_subject" value="Новая заявка с сайта Biotrek">
+          <input type="text" name="_gotcha" style="display:none">
+          <label for="name">Имя</label>
+          <input id="name" name="name" type="text" placeholder="Как к вам обращаться" required>
 
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="you@example.com" required>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
 
-        <label for="role">Кто вы</label>
-        <select id="role" name="role">
-          <option>Владелец собаки</option>
-          <option>Ветеринарная клиника</option>
-          <option>Фермерское хозяйство</option>
-          <option>Инвестор / партнёр</option>
-        </select>
+          <label for="role">Кто вы</label>
+          <select id="role" name="role">
+            <option>Владелец собаки</option>
+            <option>Ветеринарная клиника</option>
+            <option>Фермерское хозяйство</option>
+            <option>Инвестор / партнёр</option>
+          </select>
 
-        <label for="msg">Комментарий</label>
-        <textarea id="msg" name="msg" rows="4" placeholder="Сколько у вас животных, что хотите отслеживать"></textarea>
+          <label for="msg">Комментарий</label>
+          <textarea id="msg" name="msg" rows="4" placeholder="Сколько у вас животных, что хотите отслеживать"></textarea>
 
-        <button class="btn" type="submit">Отправить заявку</button>
-      </form>
+          <button class="btn" type="submit">Отправить заявку</button>
+        </form>
+      </div>
     </div>
   </section>
 
