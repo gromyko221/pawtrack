@@ -537,6 +537,9 @@ td.phase {
   letter-spacing: -.02em;
 }
 .stat p { color: var(--muted); font-size: 15.5px; flex: 1; }
+/* На странице для профессионалов цифры длиннее («Сотни $/случай»),
+   поэтому шрифт чуть меньше и без переноса: каждая цифра в одну строку */
+#agro .stat .big { font-size: clamp(26px, 2.5vw, 34px); white-space: nowrap; }
 .stat .src {
   margin-top: 16px;
   font-size: 13px;
