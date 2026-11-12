@@ -19,7 +19,7 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Оскар, золотистый ретривер, в кресле">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="style.css?v=20261112d">
+  <link rel="stylesheet" href="style.css?v=20261112f">
 </head>
 
 <body>
@@ -208,19 +208,47 @@
       <span class="badge">Стадия: рабочий прототип, идут испытания на животных</span>
       <h2>Прототип без прикрас</h2>
       <p class="lead">
-        Это не рендер. Так Biotrek выглядит сейчас: самодельный корпус,
-        плата и акселерометр, испытания на настоящей собаке.
+        Это не рендер. Сверху финальный прототип в чёрном корпусе, его носит Оскар.
+        Ниже первый этап разработки: прозрачный корпус, плата и акселерометр.
       </p>
 
+      <!-- Финальный прототип: корпус без фона + Оскар с датчиком -->
+      <h3 class="proto-title">Финальный прототип</h3>
+      <div class="proto-oscar">
+        <figure class="proto-device">
+          <div class="device-stage">
+            <img src="prototip-final.webp" width="597" height="616" loading="lazy"
+                 alt="Финальный прототип Biotrek: чёрный пластиковый корпус с выключателем на торце">
+          </div>
+          <figcaption>Закрытый корпус с выключателем</figcaption>
+        </figure>
+        <figure>
+          <video src="oscar-beg.mp4" poster="poster-oscar-beg.jpg" controls preload="metadata" playsinline loop muted></video>
+          <figcaption>Оскар бежит с датчиком</figcaption>
+        </figure>
+        <figure>
+          <img src="oscar-datchik.jpg" width="720" height="960" loading="lazy"
+               alt="Оскар, золотистый ретривер, сидит на траве; сверху на загривке на красном ошейнике закреплён чёрный корпус датчика Biotrek">
+          <figcaption>Корпус сверху на загривке, на ошейнике</figcaption>
+        </figure>
+        <figure>
+          <img src="oscar-progulka.jpg" width="720" height="960" loading="lazy"
+               alt="Оскар нюхает траву на прогулке, на ошейнике чёрный датчик Biotrek">
+          <figcaption>Обычная прогулка с датчиком</figcaption>
+        </figure>
+      </div>
+
+      <!-- Первый этап: прозрачный корпус на шлейке -->
+      <h3 class="proto-title">Первый этап разработки</h3>
       <div class="proto">
         <figure class="proto-video">
           <video src="testirovanie.mp4" poster="poster-testirovanie.jpg" controls preload="metadata" playsinline></video>
-          <figcaption>Испытание прототипа в движении, 33 секунды</figcaption>
+          <figcaption>Первые испытания в движении, 33 секунды</figcaption>
         </figure>
         <figure class="proto-tall">
           <img src="prototip-vnutri.jpg" loading="lazy"
-               alt="Внутренности прототипа: аккумулятор, плата ESP32, акселерометр и индикатор заряда в корпусе">
-          <figcaption>Начинка в корпусе</figcaption>
+               alt="Внутренности первого прототипа: аккумулятор, плата ESP32, акселерометр и индикатор заряда в прозрачном корпусе">
+          <figcaption>Начинка в прозрачном корпусе</figcaption>
         </figure>
         <figure class="proto-small">
           <img src="prototip-plata.jpg" loading="lazy"
@@ -231,7 +259,7 @@
           <div><dt>Контроллер</dt><dd>ESP32</dd></div>
           <div><dt>Акселерометр</dt><dd>MPU-6050</dd></div>
           <div><dt>Питание</dt><dd>Аккумулятор с индикатором заряда</dd></div>
-          <div><dt>Крепление</dt><dd>Прозрачный корпус на шлейке, в области холки</dd></div>
+          <div><dt>Крепление</dt><dd>Прозрачный корпус на шлейке</dd></div>
         </dl>
       </div>
     </div>
@@ -242,24 +270,25 @@
     <div class="wrap">
       <h2>Как устроен Biotrek</h2>
       <p class="lead">
-        Датчик на шлейке, приложение на телефоне и понятный отчёт, который можно
+        Датчик на ошейнике, приложение на телефоне и понятный отчёт, который можно
         показать врачу. Ничего лишнего.
       </p>
 
       <div class="product">
         <figure class="placement">
           <div class="placement-photo">
-            <img class="photo" src="prototip-na-sobake.jpg" width="640" height="480" loading="lazy"
-                 alt="Собака на прогулке, на спине между лопатками закреплён прозрачный корпус прототипа Biotrek">
+            <img class="photo" src="oscar-na-oshejnike.jpg" width="1000" height="750" loading="lazy"
+                 alt="Оскар, золотистый ретривер, сидит спиной к камере; на красном ошейнике сверху на загривке чёрный корпус датчика Biotrek">
             <span class="pin" aria-hidden="true"></span>
-            <span class="pin-label" aria-hidden="true">Датчик на холке</span>
+            <span class="pin-label" aria-hidden="true">Датчик на ошейнике</span>
           </div>
           <figcaption>
-            <strong>Почему на холке, а не на ошейнике.</strong> Ошейник прокручивается
-            на шее и повторяет движения головы: собака нюхает траву, пьёт, чешется,
-            трясёт головой, и всё это выглядит как «активность». Датчик на холке
-            закреплён шлейкой между лопатками и движется вместе с телом, поэтому видит
-            именно шаги: на шаге, рыси и галопе.
+            <strong>Почему на ошейнике.</strong> Ошейник собака носит каждый день,
+            ничего не нужно надевать отдельно. По исследованиям, для общего уровня
+            активности ошейник даёт результат, сопоставимый со шлейкой. Слабое место
+            ошейника в том, что он ловит и движения головы, поэтому датчик закреплён
+            сверху на загривке, ошейник нужно надевать плотно, а Biotrek сравнивает собаку
+            с её же прошлыми днями.
             <a href="professionals.html#placement">Что говорят исследования →</a>
           </figcaption>
         </figure>
@@ -275,7 +304,7 @@
 
           <h3>Что уже готово</h3>
           <ul class="specs">
-            <li>Собран рабочий прототип носимого датчика</li>
+            <li>Собран финальный прототип в компактном корпусе на ошейник</li>
             <li>Идут испытания на животных, накапливаются данные</li>
             <li>В работе: приложение и алгоритм выявления отклонений</li>
           </ul>
